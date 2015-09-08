@@ -16,7 +16,7 @@ namespace Metro.Models
 
     public class RutaDBContext : DbContext
     {
-        public DbSet<Ruta> Movies { get; set; }
+        public DbSet<Ruta> Rute { get; set; }
     }
 
 }
