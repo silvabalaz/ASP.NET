@@ -9,11 +9,11 @@ namespace Metro.Models
     {
         // Metro je sastavljen od liste Kvartova i liste Ruta
 
-        public Metro(IList<Kvart> kvartovi, IList<Ruta> rute, string imeGrafa)
+        public Metro(IList<Kvart> kvartovi, IList<Ruta> rute, string imeMetroa)
         {
             Kvartovi = kvartovi;
             Rute = rute;
-            ImeGrafa = imeGrafa;
+            ImeMetroa = imeMetroa;
 
         }
 
