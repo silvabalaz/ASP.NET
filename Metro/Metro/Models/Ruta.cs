@@ -9,14 +9,25 @@ namespace Metro.Models
 {
     public class Ruta
     {
+
+        //konstruktor 
+        public Ruta( Kvart start, Kvart kraj, int duljina )
+        {
+
+            Start = start;
+            Kraj = kraj;
+            Duljina = Duljina;
+
+        }
+
+        public Kvart Start { get; set; }
+        public Kvart Kraj { get; set; }
         public int Duljina { get; set; }
-        public string Start { get; set; }
-        public string Kraj { get; set; }
     }
 
-    public class RutaDBContext : DbContext
-    {
-        public DbSet<Ruta> Rute { get; set; }
-    }
+     public override string ToString()
+        {
+            return "Od " + Start.KvartIme + " do " + Kraj.KvartIme + " duljine " + Duljina;
+        }
 
 }
