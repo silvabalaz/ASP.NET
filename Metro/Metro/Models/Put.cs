@@ -65,8 +65,26 @@ namespace Metro.Models
         
         }
 
+        // METRO-3 , METRO-4
+        public int PutCiklus(Kvart start, int brStanica)
+        {
+
+            var minRuta =
+                (from ruta in MapaPuta.Rute
+                 orderby ruta.Duljina
+                 select ruta.Duljina).First();
+
+            
 
 
+
+
+
+
+
+        
+        
+        }
 
 
 
