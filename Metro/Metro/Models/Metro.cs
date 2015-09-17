@@ -21,6 +21,16 @@ namespace Metro.Models
         public IList<Ruta> Rute;
         public string ImeGrafa;
 
-    
+        //dohvati sve rute koje idu iz startkvarta-a
+        //vrati polje ruta koje su susjedne startKvartu
+        public Ruta[] SusjedniKvartovi(Kvart startKvart)
+        { 
+                return
+                    (from ruta in Rute
+                     where ruta.Start.KvartIme == startKvart.KvartIme     
+                     select ruta).ToArray<Ruta>();
+        
+        
+        }
     }
 }
