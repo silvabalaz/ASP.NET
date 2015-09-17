@@ -16,7 +16,7 @@ namespace Metro.Models
 
             Start = start;
             Kraj = kraj;
-            Duljina = Duljina;
+            Duljina = duljina;
 
         }
 
@@ -24,10 +24,10 @@ namespace Metro.Models
         public Kvart Kraj { get; set; }
         public int Duljina { get; set; }
     }
-
+    /*
      public override string ToString()
         {
             return "Od " + Start.KvartIme + " do " + Kraj.KvartIme + " duljine " + Duljina;
         }
-
+    */
 }
