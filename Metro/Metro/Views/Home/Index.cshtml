@@ -61,38 +61,36 @@
         @if (result == "") {
             <ol>
             @foreach (string dataLine in userData) {
-           
+                
+              
+                
                <p> Zagreb Metro </p>
                 <ul>
                 @foreach (string dataItem in dataLine.Split(',') ) {
 
-                    /*
-                           for(var a in dataItem.Split(new char[] { '-' }))
-                           { 
-                               <p>From @a to dataItem </p> 
-                           }
-                          
-                            for(var a in dataItem.Split(new char[] { ':' }))
-                           { 
-                               <p>to @a </p> 
-                           }
-                    
-                    */
+               
                     
                     var results = dataItem.Split('-');
-                    
+                
                     string a = results[0];
+                    string a1 = a.ToLower();
                     string b = results[1];
                     var dot = b.Split(':');
                     string c = dot[0];
                     string d = dot[1];
+                 
 
-                    var ostatak= a.Substring(1).ToLower();
-                    string a1 = a[0] + ostatak;
+                    string c2 = c[0] + c.Substring(1).ToLower();
+                 
+           
                     
-                    <p> From @a to @c -> @d </p>
+                    
+                    char[] s = a1.ToCharArray();
+                    s[0] = char.ToUpper(s[0]);
+                    string  a2= new string(s);
+                    
+                    <p> From @a2 to @c2 -> @d </p>
                           
-                                
                 
                         
              }
