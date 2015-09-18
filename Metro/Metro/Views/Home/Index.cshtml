@@ -1,4 +1,28 @@
-﻿<div id="body">
+﻿@{
+    var result = "";
+    Array userData = null;
+    
+    char[] delimiterChar = {',','-'};
+
+    var dataFile = Server.MapPath("~/App_Data/metro.txt");
+
+    if (File.Exists(dataFile)) {
+        
+        userData = File.ReadAllLines(dataFile);
+        
+        if (userData == null) {
+            // Prazna datoteka.
+            result = "Datoteka je prazna.";
+        }
+    }
+    else {
+        // Datoteka ne postoji.
+        result = "Datoteka ne postoji.";
+    }
+}
+
+
+<div id="body">
     <section class="featured">
         <div class="content-wrapper">
             <hgroup class="title">
@@ -25,6 +49,28 @@
                 <h5>METRO-1</h5>
                 Reading Zagreb Metro Network from metro.txt file:
                 <a href="http://go.microsoft.com/fwlink/?LinkId=245160">Learn more…</a>
+                
+        <div>
+
+        <h1>Citanje podataka iz datoteke</h1>
+        @result
+        @if (result == "") {
+            <ol>
+            @foreach (string dataLine in userData) {
+            <li>
+                Zagreb Metro
+                <ul>
+                @foreach (string dataItem in dataLine.Split(delimiterChar)) {
+                    <li>@dataItem</li >
+                }
+                </ul>
+            </li>
+            }
+            </ol>
+        }
+    </div>
+
+
             </li>
 
             <li class="two">
