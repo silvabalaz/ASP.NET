@@ -7,6 +7,8 @@ namespace Metro.Models
 {
     public class Put
     {
+
+        /*
         public Put(Metro metro)
         {
 
@@ -90,7 +92,7 @@ namespace Metro.Models
 
 
 
-
+        */
 
 
     }

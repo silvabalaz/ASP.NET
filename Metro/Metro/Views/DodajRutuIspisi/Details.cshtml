@@ -1,0 +1,35 @@
+﻿@model Metro.Models.Ruta
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+
+    <dt>
+    @Html.DisplayNameFor(model => model.Start) : 
+    </dt>
+    <dd>
+     @Html.DisplayFor(model => model.Start)
+    </dd>
+
+    <dt>
+    @Html.DisplayNameFor(model => model.Kraj)
+    </dt>
+    <dd>
+    @Html.DisplayFor(model => model.Kraj)
+    </dd>
+
+    <dt>
+    @Html.DisplayNameFor(model => model.Duljina)
+    </dt>
+    <dd>
+    @Html.DisplayFor(model => model.Duljina)
+    </dd>
+
+
+
+
+</div>

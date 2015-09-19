@@ -9,6 +9,7 @@ namespace Metro.Models
 {
     public class Ruta
     {
+        
 
         //konstruktor 
         public Ruta( Kvart start, Kvart kraj, int duljina )

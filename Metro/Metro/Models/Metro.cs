@@ -7,6 +7,7 @@ namespace Metro.Models
 {
     public class Metro
     {
+        /*
         // Metro je sastavljen od liste Kvartova i liste Ruta
 
         public Metro(IList<Kvart> kvartovi, IList<Ruta> rute, string imeMetroa)
@@ -32,5 +33,7 @@ namespace Metro.Models
         
         
         }
+         
+         */
     }
 }

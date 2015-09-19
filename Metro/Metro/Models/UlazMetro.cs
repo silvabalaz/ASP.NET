@@ -7,13 +7,13 @@ namespace Metro.Models
 {
     public class UlazMetro
     {
-
+        /*
         //konstruktor
         public UlazMetro()
         {
         
-            kvartovi = new List<Kvart>;
-            rute = new List<Ruta>;
+            kvartovi = new List<Kvart>();
+            rute = new List<Ruta>();
         
         }
 
@@ -22,6 +22,16 @@ namespace Metro.Models
             this.ime = ime;
             return this;
         }
+
+        // unos iz datoteke
+
+        public UlazMetro UnosIzDatoteke(string input)
+        { 
+        
+        
+        
+        }
+
 
         public Metro getMetro()
         {
@@ -35,6 +45,6 @@ namespace Metro.Models
         protected string ime;
 
 
-
-    }
+        */
+    } 
 }
