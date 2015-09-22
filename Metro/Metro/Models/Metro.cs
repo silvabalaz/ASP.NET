@@ -7,21 +7,24 @@ namespace Metro.Models
 {
     public class Metro
     {
-        /*
+        
         // Metro je sastavljen od liste Kvartova i liste Ruta
 
-        public Metro(IList<Kvart> kvartovi, IList<Ruta> rute, string imeMetroa)
+        public Metro(IList<Kvart> kvartovi, IList<Ruta> rute, string imeMetroa, string izvor)
         {
             Kvartovi = kvartovi;
             Rute = rute;
             ImeMetroa = imeMetroa;
-
+            Izvor = izvor;
         }
 
         public IList<Kvart> Kvartovi;
         public IList<Ruta> Rute;
-        public string ImeGrafa;
+        public string ImeMetroa;
+        public string izvor;
 
+
+        /*
         //dohvati sve rute koje idu iz startkvarta-a
         //vrati polje ruta koje su susjedne startKvartu
         public Ruta[] SusjedniKvartovi(Kvart startKvart)
@@ -34,6 +37,6 @@ namespace Metro.Models
         
         }
          
-         */
+        */ 
     }
 }

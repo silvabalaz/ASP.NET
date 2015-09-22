@@ -5,9 +5,11 @@ using System.Web;
 
 namespace Metro.Models
 {
+    //interface, klasa za generiranje objekta tipa Metro
+
     public class UlazMetro
     {
-        /*
+        
         //konstruktor
         public UlazMetro()
         {
@@ -17,21 +19,29 @@ namespace Metro.Models
         
         }
 
-        public UlazMetro Ime(string ime)
+
+        //unos je string iz kojega se radi Metro
+
+        public UlazMetro UnosIzDatoteke(string unos)
+        { 
+                
+            Dictionary<char, Kvart kvartRijecnik = new kvartRijecnik<char, Kvart> brojKvartova;
+        
+            kvartovi = kvartoviRijecnik.Values.ToList();
+            rute.Add(new Ruta(kvart1,kvart2,duljina));
+        }
+
+        
+        izvor = unos;
+
+        return this;
+    }
+
+           public UlazMetro Ime(string ime)
         {
             this.ime = ime;
             return this;
         }
-
-        // unos iz datoteke
-
-        public UlazMetro UnosIzDatoteke(string input)
-        { 
-        
-        
-        
-        }
-
 
         public Metro getMetro()
         {
@@ -43,8 +53,8 @@ namespace Metro.Models
         protected IList<Ruta> rute;
 
         protected string ime;
+        protected string izvor;
 
-
-        */
+        
     } 
 }
