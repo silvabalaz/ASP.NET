@@ -5,7 +5,8 @@ using System.Web;
 
 namespace Metro.Models
 {
-    //interface, klasa za generiranje objekta tipa Metro
+
+    //interface
 
     public class UlazMetro
     {
@@ -24,12 +25,36 @@ namespace Metro.Models
 
         public UlazMetro UnosIzDatoteke(string unos)
         { 
+            string broj1,broj2;
+               
+            Dictionary<char, Kvart> kvartRijecnik = new kvartRijecnik<char, Kvart> brojKvartova;
+            
+            foreach(String broj in BrojKvartova)
+            {
+                Kvart kvart1 = new Kvart(broj1);
+                Kvart kvart2 = new Kvart(broj2);
+            
+                //osiguramo da ne dodajemo kvartove više od jednom
+
+                if(!kvartRijecnik.ContainsKey(broj1))
+                {
+                    kvartRijecnik.Add(broj1, kvart1);
+                }
+                if(!kvartRijecnik.ContainsKey(broj2))
+                {
+                    kvartRijecnik.Add(broj2, kvart2);
                 
-            Dictionary<char, Kvart kvartRijecnik = new kvartRijecnik<char, Kvart> brojKvartova;
-        
+                }
+
+            
+            }
+
             kvartovi = kvartoviRijecnik.Values.ToList();
-            rute.Add(new Ruta(kvart1,kvart2,duljina));
-        }
+            
+            // dana ruta nece se ponavljati, zadano u zadatku
+ 
+            rute.Add(new Ruta(kvart1,kvart2,broj));
+        
 
         
         izvor = unos;
