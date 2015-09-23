@@ -27,7 +27,7 @@ namespace Metro.Models
         { 
             string broj1,broj2;
                
-            Dictionary<char, Kvart> kvartRijecnik = new kvartRijecnik<char, Kvart> brojKvartova;
+            Dictionary<char, Kvart> kvartRijecnik = new kvartRijecnik<char, Kvart> (BrojKvartova);
             
             foreach(String broj in BrojKvartova)
             {
