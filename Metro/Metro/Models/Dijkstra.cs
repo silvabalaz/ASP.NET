@@ -37,8 +37,8 @@ namespace Metro.Models
             foreach(Kvart k in metro.Kvartovi)
             {
 
-                udaljenosti.Add(k.ImeKvarta, Int32.MaxValue);
-                rute.Add(k.ImeKvarta, start.ImeKvarta.ToString());
+                udaljenosti.Add(k.ImeKvarta, Int32.MaxValue); // Int32.MaxValue je (111111.....1) u bazi 2, 32 jedinice 
+                rute.Add(k.ImeKvarta, start.ImeKvarta);
             
             }
 
@@ -47,6 +47,62 @@ namespace Metro.Models
             if(!traziCiklus)
             {
                 udaljenosti[start.ImeKvarta] = 0;
+            }
+
+
+
+            var bridovi = metro.Rute.ToList(); // casting iz IList u List
+
+            var tren = start;
+
+            //zelimo posjetiti svaki kvart ako je moguce
+
+            while (posjetili.Keys.Count < broji)
+            {
+
+                if (traziCiklus)
+                {
+                    traziCiklus = false;
+
+                }
+                else {
+
+                    posjetili.Add(tren.KvartIme, true);
+                }
+
+                // provjeri svaku rutu
+
+                foreach (Ruta ruta in metro.SusjedniKvartovi(tren))
+                {
+                    //nikad vise ne provjeravaj ovu rutu
+                    rute.Remove(ruta);
+
+                    //ako nemamo rutu ili ako smo nasli bolju
+
+                    if (udaljenosti[ruta.Kraj.KvartIme] == Int32.Maxvalue || udaljenosti[tren.KvartIme] + ruta.Duljina < udaljenosti[ruta.Kraj.KvartIme])
+                    {
+                        if (tren.KvartIme == start.KvartIme)
+                        {
+                            udaljenosti[ruta.Kraj.KvartIme] == ruta.Duljina;
+
+                        }
+                        else
+                        { 
+                            udaljenosti[ruta.Kraj.KvartIme] = udaljenosti[tren.KvartIme] + ruta.Duljina;
+                        
+                        }
+                        rute[ruta.Kraj.KvartIme] = rute[tren.KvartIme] + "-" + ruta.Kraj;
+
+                    }
+
+                
+                }
+                //svi kvartovi koji su susjedni trenutno posjecenom kvartu
+
+                List<string> susjedni = new List<string>();
+
+                susjedni = susjedni.Union( metro.SusjedniKvartovi(tren).Select(Ruta => Ruta.Kraj.ImeKvarta)).ToList();
+            
             }
 
         }
