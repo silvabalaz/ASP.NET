@@ -51,9 +51,9 @@ namespace Metro.Models
 
 
 
-            var rute = metro.Rute.ToList(); // casting iz IList u List
+            var r = metro.Rute.ToList(); // casting iz IList u List, var moze biti bilo koji tip, sada je lista
 
-            var tren = start;
+            var tren = start; //var je ovdje tip Kvart
 
             //zelimo posjetiti svaki kvart ako je moguce
 
@@ -75,7 +75,7 @@ namespace Metro.Models
                 foreach (Ruta ruta in metro.SusjedniKvartovi(tren))
                 {
                     //nikad vise ne provjeravaj ovu rutu
-                    rute.Remove(ruta);
+                    r.Remove(ruta);
 
                     //ako nemamo rutu ili ako smo nasli bolju
 

@@ -24,9 +24,11 @@ namespace Metro.Models
         public string izvor;
 
 
-        /*
+
+        
         //dohvati sve rute koje idu iz startkvarta-a
-        //vrati polje ruta koje su susjedne startKvartu
+        //vrati polje ruta, koje sadrze kvartove susjedne startKvartu
+
         public Ruta[] SusjedniKvartovi(Kvart startKvart)
         { 
                 return
@@ -37,6 +39,6 @@ namespace Metro.Models
         
         }
          
-        */ 
+         
     }
 }
