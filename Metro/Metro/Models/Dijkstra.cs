@@ -101,7 +101,26 @@ namespace Metro.Models
 
                 List<string> susjedni = new List<string>();
 
-                susjedni = susjedni.Union( metro.SusjedniKvartovi(tren).Select(Ruta => Ruta.Kraj.ImeKvarta)).ToList();
+                susjedni = susjedni.Union(metro.SusjedniKvartovi(tren).Select(Ruta => Ruta.Kraj.ImeKvarta)).ToList(); //unija svih susjednih kvartova kvartu tren
+                // i to imekvartova na kraju rute, na kraju sve u listu, liststa 'susjedni'.
+
+                foreach (string k in posjetili.Keys) {
+
+                    susjedni = susjedni.Union(
+                        metro.SusjedniKvartovi(new Kvart(k))
+                        .Select(ruta => ruta.Kraj.Ime)).ToList();
+                }
+
+                // odredi Kvart najmanje udaljenosti, koji nije bio posjećen
+
+                tren =
+                     (from KeyValuePair<string, int> par in udaljenosti
+                      where par.Key != tren.ImeKvarta
+                      where !posjetili.Keys.Contains(par.Key)
+                      where susjedni.Contains(par.Key)
+                      orderby par.Value
+                      select new Kvart(par.Key)).DefaultIfEmpty(null).First();
+
             
             }
 
