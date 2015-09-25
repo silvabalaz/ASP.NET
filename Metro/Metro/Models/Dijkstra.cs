@@ -37,8 +37,8 @@ namespace Metro.Models
             foreach(Kvart k in metro.Kvartovi)
             {
 
-                udaljenosti.Add(k.ImeKvarta, Int32.MaxValue); // Int32.MaxValue je (111111.....1) u bazi 2, 32 jedinice 
-                rute.Add(k.ImeKvarta, start.ImeKvarta);
+                udaljenosti.Add(k.KvartIme, Int32.MaxValue); // Int32.MaxValue je (111111.....1) u bazi 2, 32 jedinice 
+                rute.Add(k.KvartIme, start.KvartIme);
             
             }
 
@@ -46,12 +46,12 @@ namespace Metro.Models
         
             if(!traziCiklus)
             {
-                udaljenosti[start.ImeKvarta] = 0;
+                udaljenosti[start.KvartIme] = 0;
             }
 
 
 
-            var bridovi = metro.Rute.ToList(); // casting iz IList u List
+            var rute = metro.Rute.ToList(); // casting iz IList u List
 
             var tren = start;
 
@@ -62,7 +62,7 @@ namespace Metro.Models
 
                 if (traziCiklus)
                 {
-                    traziCiklus = false;
+                    traziCiklus = false; 
 
                 }
                 else {
@@ -79,11 +79,11 @@ namespace Metro.Models
 
                     //ako nemamo rutu ili ako smo nasli bolju
 
-                    if (udaljenosti[ruta.Kraj.KvartIme] == Int32.Maxvalue || udaljenosti[tren.KvartIme] + ruta.Duljina < udaljenosti[ruta.Kraj.KvartIme])
+                    if (udaljenosti[ruta.Kraj.KvartIme] == Int32.MaxValue || udaljenosti[tren.KvartIme] + ruta.Duljina < udaljenosti[ruta.Kraj.KvartIme])
                     {
                         if (tren.KvartIme == start.KvartIme)
                         {
-                            udaljenosti[ruta.Kraj.KvartIme] == ruta.Duljina;
+                            udaljenosti[ruta.Kraj.KvartIme] = ruta.Duljina;
 
                         }
                         else
@@ -104,6 +104,8 @@ namespace Metro.Models
                 susjedni = susjedni.Union(metro.SusjedniKvartovi(tren).Select(Ruta => Ruta.Kraj.ImeKvarta)).ToList(); //unija svih susjednih kvartova kvartu tren
                 // i to imekvartova na kraju rute, na kraju sve u listu, liststa 'susjedni'.
 
+
+                //susjedni kvartovi kvartovima koje smo posjetili, stavi u uniju susjednih, tj. u listu
                 foreach (string k in posjetili.Keys) {
 
                     susjedni = susjedni.Union(
@@ -111,18 +113,32 @@ namespace Metro.Models
                         .Select(ruta => ruta.Kraj.Ime)).ToList();
                 }
 
-                // odredi Kvart najmanje udaljenosti, koji nije bio posjećen
-
+                // odredi Kvart najmanje udaljenosti, koji nije bio posjećen, a nije trenutni
+                //default: uzlazni poredak
                 tren =
                      (from KeyValuePair<string, int> par in udaljenosti
-                      where par.Key != tren.ImeKvarta
+                      where par.Key != tren.KvartIme
                       where !posjetili.Keys.Contains(par.Key)
                       where susjedni.Contains(par.Key)
                       orderby par.Value
                       select new Kvart(par.Key)).DefaultIfEmpty(null).First();
 
-            
+
+                if (tren == null)
+                {
+                    break;
+                
+                }
+
             }
+
+            // povratna vrijednost
+            foreach (KeyValuePair<string, string> pair in rute)
+            {
+                VratiVrijednost.Add(pair.Key, new Tuple<int, string>(udaljenosti[par.Key], par.Value));
+            }
+
+            return VratiVrijednost;
 
         }
 
