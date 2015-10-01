@@ -8,7 +8,7 @@ namespace Metro.Models
 {
     public class Put
     {
-
+        /*
         
         public Put(Metro metro)
         {
@@ -136,35 +136,41 @@ namespace Metro.Models
         }
 
 
-        public int? BrojTrazenihRuta(Tuple<string, int?, string> ruta)
+        public int? BrojTrazenihRuta(Tuple<string[], int?, string> ruta) // Item3 je vrsta rute kakvu trazim u zadatku {"obicna","MaxTri","MaxCetiri", "najkracaRuta"}
         {
             int? broj = 0;
 
             try {
 
-                switch (ruta.Item3)
+                switch (ruta.Item3) //ovisno koja je vrsta rute koje trazim, adekvatnu funkciju pozovi
                 { 
                     
                     //slucajevi za duljinu obicne rute
-                    case ruta.Item3 == "obicna":
+                    
+                    String.Compare("obicna",ruta.Item3): //compare two string funkcija treba
+
                         broj = this.DuljinaPuta(ruta.Item1);
                         break;
-                    //slucajevi najvise tri stanice
-                    case ruta.Item3 == "MaxTri"
-                        var rute = this.Stanice(new Kvart(ruta.Item1[0]), 3, false).Distinct<string>().ToList<string>();
+
+                    //slucajevi najvise tri stanice,moze biti i manje
+                    case ruta.Item3 == "MaxTri" :
+                        
+                        var rute = this.Stanice(new Kvart(ruta.Item1.ElementAt(0)),3,false).Distinct<string>().ToList<string>();
+                        
                         broj =
                              (from s in rute
                              where s.Length > 1
-                             where s[s.Length - 1] == ruta.Item1[2] 
+                             where s[s.Length-1] == ruta.Item1[2] // compare two strings funkcija 
                              select s).Count();
                         break;
-                     //slucajevi najvise cetiri stanice
+                     
+                    //slucajevi najvise cetiri stanice
                     case ruta.Item3 == "MaxCetiri":
-                        rute = this.Stanice(new Kvart(ruta.Item1[0]), 4, true).Distinct<string>().ToList<string>();
+                        rute = this.Stanice(new Kvart(ruta.Item1.ElementAt(0)), 4, true).Distinct<string>().ToList<string>();
                         broj =
-                            (from s in ruta
+                            (from s in rute
                              where s.Length > 1
-                             where s[s.Length - 1] == rute.Item1[2]
+                             where s[] == rute.Item1[2]
                              select s).Count();
                         break;
                         //nadji najkracu rutu
@@ -173,9 +179,7 @@ namespace Metro.Models
                         
                         Dijkstra D = new Dijkstra(metro);
 
-                        var najkracaRuta = D.MinRuta(
-                                 new Kvart(ruta.Item1[0]),
-                                 ruta.Item1[0] == ruta.Item1[2]);
+                        var najkracaRuta = D.MinRuta(new Kvart(ruta.Item1[0]), ruta.Item1 == ruta.Item1); // ali negdje je crtica kao razlika dva kvarta 
 
                                  broj = minRoutes[ruta.Item1[2]].Item1;
 
@@ -201,7 +205,9 @@ namespace Metro.Models
 
         
 
-
+        */
     }
+         
+         
 }
 

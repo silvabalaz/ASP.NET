@@ -8,9 +8,8 @@ namespace Metro.Models
     //klasa Kvart
     public class Kvart
     {
-        
-
         //konstruktor
+        
         public Kvart(string kvartIme)
         {
             KvartIme = kvartIme;

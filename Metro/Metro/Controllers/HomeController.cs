@@ -5,21 +5,35 @@ using System.Web;
 using System.Web.Mvc;
 using System.IO;
 
+using Metro.Models;
 
 namespace Metro.Controllers
 {
     public class HomeController : Controller
-    {  
+    {
         public ActionResult Index()
         {
             return View();
-        } 
-
-        public ActionResult Pogled1()
-        {
-            return View("MyHomePage");
         }
 
+        /*
+        public ActionResult Unos()
+        {
+            //Stvoriti Metro
+            Metro<Kvartovi,Rute, ZagrebMetro> ZgM= new Metro<Ruta>();
+            // napraviti prvi element , tj. prvu Rutu u ZagrebMetro
+            Ruta Prva = new Ruta
+            {
+                Start = "MAKSIMIR",
+                Kraj = "SIGET",
+                Duljina = 5
+
+            };
+
+
+            return View();
+        }
+        
         [HttpPost]
         public ActionResult Pogled2()
         {
@@ -29,26 +43,58 @@ namespace Metro.Controllers
             return View();
         
         }
-
+        */
 
         // This action handles the form POST and the upload
         [HttpPost]
         public ActionResult Index(HttpPostedFileBase file)
         {
-            // Verify that the user selected a file
+            
             if (file != null && file.ContentLength > 0)
             {
-                // extract only the fielname
+
+
                 var fileName = Path.GetFileName(file.FileName);
-                // store the file inside ~/App_Data/uploads folder
-                var path = Path.Combine(Server.MapPath("~/App_Data/uploads"), fileName);
+                var dataFile = Server.MapPath("~/Datoteka");
+                var path = Path.Combine(dataFile, fileName);
                 file.SaveAs(path);
+                string userData = new StreamReader(file.InputStream).ReadToEnd();
+                List<Ruta> Rute = new List<Ruta>();
+                string[] sp = userData.Split(',');
+
+                foreach (string dataItem in sp)
+                {
+
+                    var results = dataItem.Split('-');
+
+                    string a = results[0];
+                    string a1 = a.ToLower();
+                    string b = results[1];
+                    var dot = b.Split(':');
+                    string c = dot[0];
+                    var d = dot[1];
+                    string c2 = c[0] + c.Substring(1).ToLower();
+                    char[] s = a1.ToCharArray();
+                    s[0] = char.ToUpper(s[0]);
+                    string a2 = new string(s);
+                    int duljina = Int32.Parse(d);
+                    Kvart kvart1 = new Kvart(a2);
+                    Kvart kvart2 = new Kvart(c2);
+                    Ruta temp = new Ruta(kvart1, kvart2, duljina);
+                    Rute.Add(temp);
+                }
+                return View(Rute);
+              
             }
-            // redirect back to the index action to show the form once again
-            return RedirectToAction("Index");
+            else throw new HttpException(404, "Datoteka nije pronađena");
         }
+    
+
+
+
+
 
 
     }
-  
+
 }

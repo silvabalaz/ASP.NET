@@ -7,6 +7,7 @@ namespace Metro.Models
 {
     public class Dijkstra
     {
+        /*
         
         //konstruktor
 
@@ -145,7 +146,9 @@ namespace Metro.Models
 
 
         protected Metro metro;
-    }  
+   
+         */
+         }  
 
 
    

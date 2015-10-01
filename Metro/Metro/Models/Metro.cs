@@ -10,21 +10,22 @@ namespace Metro.Models
         
         // Metro je sastavljen od liste Kvartova i liste Ruta
 
-        public Metro(IList<Kvart> kvartovi, IList<Ruta> rute, string imeMetroa, string izvor)
+        /*
+        public Metro(IList<Kvart> kvartovi, IList<Ruta> rute, string imeMetroa )//,string izvor) 
         {
             Kvartovi = kvartovi;
             Rute = rute;
             ImeMetroa = imeMetroa;
-            Izvor = izvor;
-        }
+           // Izvor = izvor;
+        }  */
 
-        public IList<Kvart> Kvartovi;
-        public IList<Ruta> Rute;
-        public string ImeMetroa;
-        public string izvor;
+        public IList<Kvart> Kvartovi{ get; set;}
+        public IList<Ruta> Rute { get; set;}
+        public string ImeMetroa { get; set;}
+        //public string izvor { get; set;}
 
 
-
+        /*
         
         //dohvati sve rute koje idu iz startkvarta-a
         //vrati polje ruta, koje sadrze kvartove susjedne startKvartu
@@ -39,6 +40,6 @@ namespace Metro.Models
         
         }
          
-         
+         */
     }
 }
