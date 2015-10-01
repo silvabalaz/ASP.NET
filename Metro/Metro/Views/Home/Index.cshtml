@@ -1,29 +1,5 @@
-﻿@{
-    var result = "";
-    Array userData = null;
-    
-    char[] delimiterChar = new char[3];
-    
-    delimiterChar[0] = '-';
-    delimiterChar[1] = ':';
- 
+﻿@model IEnumerable<Metro.Models.Ruta>
 
-    var dataFile = Server.MapPath("~/App_Data/metro.txt");
-
-    if (File.Exists(dataFile)) {
-        
-        userData = File.ReadAllLines(dataFile);
-        
-        if (userData == null) {
-            // Prazna datoteka.
-            result = "Datoteka je prazna.";
-        }
-    }
-    else {
-        // Datoteka ne postoji.
-        result = "Datoteka ne postoji.";
-    }
-}
 
 
 <div id="body">
@@ -45,91 +21,83 @@
         <ol class="round">
             <li class="one">
                 <h5>METRO-1</h5>
-                Reading Zagreb Metro Network from <b>metro.txt</b> file:
-                   @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    <input type="file" name="file" />
-    <input type="submit" value="OK" />
-}
-                
-        <div>
+                Reading <b> Zagreb Metro</b> network from <b>metro.txt</b> file:
+   
+
 
       
-        @result
-        @if (result == "") {
-            <ol>
-            @foreach (string dataLine in userData) {
-                
-              
-                
-               <h3> Zagreb Metro </h3>
-                <ul>
-                @foreach (string dataItem in dataLine.Split(',') ) {
 
-               
-                    
-                    var results = dataItem.Split('-');
-                
-                    string a = results[0];
-                    string a1 = a.ToLower();
-                    string b = results[1];
-                    var dot = b.Split(':');
-                    string c = dot[0];
-                    string d = dot[1];
-                 
-
-                    string c2 = c[0] + c.Substring(1).ToLower();
-                 
-           
-                    
-                    
-                    char[] s = a1.ToCharArray();
-                    s[0] = char.ToUpper(s[0]);
-                    string  a2= new string(s);
-                    
-                  
-                    
-                   <p> From @a2 to @c2 -> @d </p>
-                          
-                
-                        
-             }
-                </ul>
-            
-            }
-            </ol>
-        }
-        
-@using (Html.BeginForm("Index", "User", FormMethod.Post))
+                      
+@using (Html.BeginForm("Index", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    @Html.TextBox("FirstName", String.Empty)
-    <span class="input-group-btn">
-        <button class="btn btn-default" type="submit">Save</button>
-    </span>
+    <input type="file" name="file" />
+    <input type="submit" value="Save file" />
 }
 
 
-    </div>
 
-                  <form method='get' action="DodajRutuIspisi\Index" > Unos ruta: <br />
+<p><b>Output:</b></p>
+@if(Model != null)
+{
+foreach (var i in Model)
+{ 
 
-                       Pocetak:<input id='P' name='Pocetak' type='text' value=''/><br />
-                        Kraj:<input id='K' name='Kraj' type='text' value=''/><br />
-                        Duljina:<input id='D' name='Duljina' type='text' value='' /><br />
+<p>From @i.Start.KvartIme to @i.Kraj.KvartIme -> @i.Duljina</p>
 
-                    </form>
+}
 
-
-
-
-
-
-            </li>
+}        
+     </li>
 
             <li class="two">
                 <h5>METRO-2</h5>
                 Find out distance of a trip:
-              
+
+                      
+@using (Html.BeginForm("Distance", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div>
+      
+   </div>
+    <br />
+    
+    <div>
+     
+
+    </div>
+    <br />
+    
+  
+    <input type="submit" value="Get distance" />
+}
+Input stations:<br />
+<input type="text" name="stations[0]" value="First" /><br />
+<input type="text" name="stations[1]" value="Second" /><br />
+<input type="text" name="stations[2]" value="Third" /><br />
+<input type="text" name="stations[3]" value="Fourth" /><br />
+<input type="text" name="stations[4]" value="Fifth" /><br />
+
+
+<script>
+    function () {
+        //gotov primjer
+        var myObject = JSON.stringify({stations : ["MAKSIMIR", "SIGET","SPANSKO"]});
+
+    $.ajax({
+        url: '/Home/Distance/',
+        data: myObject,
+        type: 'POST',
+        contentType: 'application/json; charset=utf-8',
+        success: function (data) {
+            // return values 
+        }
+    });
+}
+</script>  
+                
+                
+                
+                            
             </li>
             <li class="three">
                 <h5>METRO-3</h5>

@@ -8,7 +8,7 @@ namespace Metro.Models
 {
     public class Put
     {
-        /*
+        
         
         public Put(Metro metro)
         {
@@ -18,7 +18,7 @@ namespace Metro.Models
         }
 
         public Metro MapaPuta { get; set; }
-
+        /*
         //Rekurzivna funkcija
         public List<string> Stanice(Kvart start, int maxStanica, bool tocanBrojStanica)
         {
@@ -53,7 +53,9 @@ namespace Metro.Models
             
             }
 
-       
+       */
+
+
         //METRO-2 za dani put vraca duljinu puta
 
         public int? DuljinaPuta(string[] put) //nazivi kvartova kao stanica string[] put= {"MAKSIMIR","SIGET","SPANSKO"}
@@ -112,7 +114,7 @@ namespace Metro.Models
 
         
         // METRO-3 , METRO-4
-
+/*
         public int PutCiklus(Kvart start, int maxPut)
         {
             var minRuta =

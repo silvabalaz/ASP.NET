@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data.Entity;
 
 namespace Metro.Models
 {
@@ -10,17 +11,17 @@ namespace Metro.Models
         
         // Metro je sastavljen od liste Kvartova i liste Ruta
 
-        /*
-        public Metro(IList<Kvart> kvartovi, IList<Ruta> rute, string imeMetroa )//,string izvor) 
+        
+        public Metro(List<Kvart> kvartovi, List<Ruta> rute, string imeMetroa )//,string izvor) 
         {
             Kvartovi = kvartovi;
             Rute = rute;
             ImeMetroa = imeMetroa;
            // Izvor = izvor;
-        }  */
+        }  
 
-        public IList<Kvart> Kvartovi{ get; set;}
-        public IList<Ruta> Rute { get; set;}
+        public List<Kvart> Kvartovi{ get; set;}
+        public List<Ruta> Rute { get; set;}
         public string ImeMetroa { get; set;}
         //public string izvor { get; set;}
 

@@ -14,6 +14,28 @@ namespace Metro
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
 
+         routes.MapRoute(
+         name: "FormaUpload",
+         url: "Home/Spremljeno",
+         defaults: new { controller = "Home", action = "Upload", id = UrlParameter.Optional }
+         );
+
+        routes.MapRoute(
+       name: "Distance",
+       url: "Home",
+       defaults: new { controller = "Home", action = "Distance", id = UrlParameter.Optional }
+       );
+
+        routes.MapRoute(
+        name: "PregledRuta",
+        url: "Home",
+        defaults: new { controller = "Home", action = "PregledRuta", id = UrlParameter.Optional }
+        );
+
+
+        
+
+
             routes.MapRoute(
             name: "Ruta",
             url: "ObjektRuta/Details",
@@ -22,9 +44,9 @@ namespace Metro
 
             //probni , bitno je kojim redoslijedom su napisani 
             routes.MapRoute(
-               name: "Proba",
-               url: "P",
-               defaults: new { controller = "Home", action = "Pogled1", id = UrlParameter.Optional }
+               name: "Unos",
+               url: "U",
+               defaults: new { controller = "Home", action = "Unos", id = UrlParameter.Optional }
            );
 
         

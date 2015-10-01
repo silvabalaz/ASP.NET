@@ -49,7 +49,7 @@ namespace Metro.Controllers
         [HttpPost]
         public ActionResult Index(HttpPostedFileBase file)
         {
-            
+
             if (file != null && file.ContentLength > 0)
             {
 
@@ -60,6 +60,8 @@ namespace Metro.Controllers
                 file.SaveAs(path);
                 string userData = new StreamReader(file.InputStream).ReadToEnd();
                 List<Ruta> Rute = new List<Ruta>();
+                List<Kvart> Kvartovi = new List<Kvart>();
+
                 string[] sp = userData.Split(',');
 
                 foreach (string dataItem in sp)
@@ -80,15 +82,42 @@ namespace Metro.Controllers
                     int duljina = Int32.Parse(d);
                     Kvart kvart1 = new Kvart(a2);
                     Kvart kvart2 = new Kvart(c2);
+
+                    Kvartovi.Add(kvart1);
+                    Kvartovi.Add(kvart2);
+
                     Ruta temp = new Ruta(kvart1, kvart2, duljina);
                     Rute.Add(temp);
+                  
+                   
                 }
+                Metro metro = new Metro(Kvartovi,Rute,"ZagrebMetro");
+                //treba mi metro za koji mi trebaju popis ovih ruta, da bi mogla racunati ostalo.
                 return View(Rute);
-              
+
             }
-            else throw new HttpException(404, "Datoteka nije pronađena");
+            else throw new HttpException(404, "File not found");
         }
-    
+
+
+
+
+        [HttpPost]
+        public JsonResult Distance(string[] stations)
+        {
+            List<Ruta> Rute = new List<Ruta>();
+            Put put = new Put(metro);
+            int duljina = put.duljinaPuta(stations);
+     
+         
+            //  Add user model
+            return Json(new { Status = "Success" }, JsonRequestBehavior.AllowGet);
+
+        }
+
+        }
+
+
 
 
 
@@ -96,5 +125,6 @@ namespace Metro.Controllers
 
 
     }
+    
 
-}
+
