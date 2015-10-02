@@ -46,6 +46,7 @@ namespace Metro.Controllers
         */
 
         // This action handles the form POST and the upload
+
         [HttpPost]
         public ActionResult Index(HttpPostedFileBase file)
         {
@@ -91,40 +92,20 @@ namespace Metro.Controllers
                   
                    
                 }
-                Metro metro = new Metro(Kvartovi,Rute,"ZagrebMetro");
-                //treba mi metro za koji mi trebaju popis ovih ruta, da bi mogla racunati ostalo.
-                return View(Rute);
+                 Mapa metro = new Mapa(Kvartovi,Rute,"ZagrebMetro");
 
+                //treba mi metro za koji mi trebaju popis ovih ruta, da bi mogla racunati ostalo.
+                TempData["Metro"] = metro;
+               
+                return View(Rute);
+               
             }
             else throw new HttpException(404, "File not found");
         }
 
+ }
 
-
-
-        [HttpPost]
-        public JsonResult Distance(string[] stations)
-        {
-            List<Ruta> Rute = new List<Ruta>();
-            Put put = new Put(metro);
-            int duljina = put.duljinaPuta(stations);
-     
-         
-            //  Add user model
-            return Json(new { Status = "Success" }, JsonRequestBehavior.AllowGet);
-
-        }
-
-        }
-
-
-
-
-
-
-
-
-    }
+ }
     
 
 

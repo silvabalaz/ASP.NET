@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Metro.Models.Ruta>
+﻿@model IEnumerable<Metro.Models.Ruta>    
 
 
 
@@ -22,11 +22,6 @@
             <li class="one">
                 <h5>METRO-1</h5>
                 Reading <b> Zagreb Metro</b> network from <b>metro.txt</b> file:
-   
-
-
-      
-
                       
 @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
@@ -35,74 +30,32 @@
 }
 
 
-
 <p><b>Output:</b></p>
-@if(Model != null)
+
+@if (Model != null)
 {
-foreach (var i in Model)
-{ 
+    foreach (var i in Model)
+    { 
 
 <p>From @i.Start.KvartIme to @i.Kraj.KvartIme -> @i.Duljina</p>
 
-}
+    }
 
 }        
      </li>
 
+
+
             <li class="two">
                 <h5>METRO-2</h5>
                 Find out distance of a trip:
-
-                      
-@using (Html.BeginForm("Distance", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    <div>
-      
-   </div>
-    <br />
-    
-    <div>
-     
-
-    </div>
-    <br />
-    
-  
-    <input type="submit" value="Get distance" />
-}
-Input stations:<br />
-<input type="text" name="stations[0]" value="First" /><br />
-<input type="text" name="stations[1]" value="Second" /><br />
-<input type="text" name="stations[2]" value="Third" /><br />
-<input type="text" name="stations[3]" value="Fourth" /><br />
-<input type="text" name="stations[4]" value="Fifth" /><br />
-
-
-<script>
-    function () {
-        //gotov primjer
-        var myObject = JSON.stringify({stations : ["MAKSIMIR", "SIGET","SPANSKO"]});
-
-    $.ajax({
-        url: '/Home/Distance/',
-        data: myObject,
-        type: 'POST',
-        contentType: 'application/json; charset=utf-8',
-        success: function (data) {
-            // return values 
-        }
-    });
-}
-</script>  
-                
-                
-                
-                            
+                <a href="@Url.Action("distance", "Distance", new { id = UrlParameter.Optional })">Get distance</a>    
             </li>
+
             <li class="three">
                 <h5>METRO-3</h5>
                 Number of trips...
-                <a href="@Url.Action("Details","ObjektRuta",new { id = UrlParameter.Optional })">Details</a>
+                <a href="@Url.Action("Details", "ObjektRuta", new { id = UrlParameter.Optional })">Details</a>
             </li>
              <li class="four">
                 <h5>METRO-4</h5>

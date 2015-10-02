@@ -10,14 +10,14 @@ namespace Metro.Models
     {
         
         
-        public Put(Metro metro)
+        public Put(Mapa metro)
         {
 
             MapaPuta = metro;
         
         }
 
-        public Metro MapaPuta { get; set; }
+        public Mapa MapaPuta { get; set; }
         /*
         //Rekurzivna funkcija
         public List<string> Stanice(Kvart start, int maxStanica, bool tocanBrojStanica)
@@ -64,6 +64,7 @@ namespace Metro.Models
             string trenutnaLokacija = null;
             char a = '-';
            //za svaku rutu u putu
+          
 
             foreach (string kvart in put)
             {
@@ -79,14 +80,14 @@ namespace Metro.Models
                 
                 }
 
-          //pronađi zadanu rutu (put)
+          //pronađi zadanu rutu (put), 
 
-          Ruta trazi =  
-              (from ruta in MapaPuta.Rute
-               where ruta.Start.KvartIme == trenutnaLokacija
-                    && ruta.Kraj.KvartIme == kvart
-                    orderby ruta.Duljina
-                    select ruta).DefaultIfEmpty(null).First();
+                Ruta trazi =
+                    (from ruta in MapaPuta.Rute
+                     where ruta.Start.KvartIme == trenutnaLokacija
+                          && ruta.Kraj.KvartIme == kvart
+                     orderby ruta.Duljina
+                     select ruta).DefaultIfEmpty(null).First();
 
 
 

@@ -6,13 +6,13 @@ using System.Data.Entity;
 
 namespace Metro.Models
 {
-    public class Metro
+    public class Mapa
     {
         
-        // Metro je sastavljen od liste Kvartova i liste Ruta
+        // Mapa je sastavljen od liste Kvartova i liste Ruta
 
         
-        public Metro(List<Kvart> kvartovi, List<Ruta> rute, string imeMetroa )//,string izvor) 
+        public Mapa(List<Kvart> kvartovi, List<Ruta> rute, string imeMetroa )//,string izvor) 
         {
             Kvartovi = kvartovi;
             Rute = rute;
