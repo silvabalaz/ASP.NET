@@ -14,17 +14,19 @@ namespace Metro
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
 
+       routes.MapRoute(
+       name: "Distance",
+       url: "Distance/distance",
+       defaults: new { controller = "Distance", action = "distance", id = UrlParameter.Optional }
+       );
+
          routes.MapRoute(
          name: "FormaUpload",
          url: "Home/Spremljeno",
          defaults: new { controller = "Home", action = "Upload", id = UrlParameter.Optional }
          );
 
-        routes.MapRoute(
-       name: "Distance",
-       url: "Home",
-       defaults: new { controller = "Home", action = "Distance", id = UrlParameter.Optional }
-       );
+   
 
         routes.MapRoute(
         name: "PregledRuta",

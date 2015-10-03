@@ -16,17 +16,18 @@ namespace Metro.Controllers
         //
         // GET: /Distance/
 
-        [HttpPost]
         //public JsonResult distance(string[] stations)
+       // public ActionResult distance(string[] stations)
         public ActionResult distance(string[] stations)
         {
+
             Mapa metro = TempData["Metro"] as Mapa;
 
-            List<Ruta> Rute = new List<Ruta>();
-            Put put = new Put(metro);
+            //List<Ruta> Rute = new List<Ruta>();
+            //Put put = new Put(metro);
 
 
-            // int duljina = (int)put.DuljinaPuta(stations);
+             //int duljina = (int)put.DuljinaPuta(stations);
 
 
             // var model = new { distance = duljina};

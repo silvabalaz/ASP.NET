@@ -1,18 +1,12 @@
-﻿@model Metro.Models.Mapa  
+﻿@model Metro.Models.Mapa
+
 
 @{
     ViewBag.Title = "Distance";
 }
 
- @using (Html.BeginForm("distance", "Distance", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
 
-    
-    <input type="file" name="file" />
-    <input type="submit" value="Save file" />
-}
 
-    <p><b>Mapa: Ime metroa: @Model.ImeMetroa</b></p>
 
 @if (Model != null)
 {
@@ -33,33 +27,4 @@
 
 
 }
-
-Input stations:<br />
-
-<form method="post" action="/Home/Distance">
-
-<input type="text" name="stations[0]" value="First" /><br />
-<input type="text" name="stations[1]" value="Second" /><br />
-<input type="text" name="stations[2]" value="Third" /><br />
-<input type="text" name="stations[3]" value="Fourth" /><br />
-<input type="text" name="stations[4]" value="Fifth" /><br />
-<input type="submit" value="Get distance" />
-
-</form>
-
-<script>
-    function () {
-        //gotov primjer
-        //var myObject = JSON.stringify({stations : ["MAKSIMIR", "SIGET","SPANSKO"]});
-
-    $.ajax({
-        url: '/zagreb-metro/trip/distance',
-        data: myObject,
-        type: 'POST',
-        contentType: 'application/json; charset=utf-8',
-        success: function (data) {
-            // return values 
-        }
-    });
-}
-</script>  
+    
