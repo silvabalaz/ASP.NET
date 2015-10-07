@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.IO;
-
+using Newtonsoft.Json;
 using Metro.Models;
 
 
@@ -13,112 +13,53 @@ namespace Metro.Controllers
 {
     public class DistanceController : Controller
     {
-        //
+
         // GET: /Distance/
-
-        //public JsonResult distance(string[] stations)
-       // public ActionResult distance(string[] stations)
-        public ActionResult distance(string[] stations)
-        {
-
-            Mapa metro = TempData["Metro"] as Mapa;
-
-            List<Ruta> Rute = new List<Ruta>();
-            Put put = new Put(metro);
-
-
-            //int duljina = (int)put.DuljinaPuta(stations);
-
-
-            // var model = new { distance = duljina};
-            // return Json(model, JsonRequestBehavior.AllowGet);
-            return View(metro);
-        }
-
-        //
-        // GET: /Distance/Details/5
-
-        public ActionResult Details(int id)
+        [HttpGet]
+        public ActionResult distance()
         {
             return View();
         }
-
-        //
-        // GET: /Distance/Create
-
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        //
-        // POST: /Distance/Create
 
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult distance(List<string> Stanice)
         {
-            try
+
+            int duljina;
+
+            //Mapa metro = new Mapa(null,null,"ZagrebMetro");
+            var metro = TempData["Metro"] as Mapa;
+
+                //duljina = (int)metro.DuljinaPuta(Stanice);
+
+            if (Stanice != null)
             {
-                // TODO: Add insert logic here
+                
+                List<Kvart> stations = new List<Kvart>(Stanice.Count);
 
-                return RedirectToAction("Index");
+                Stanice.ForEach((item) =>
+                {
+                    stations.Add(new Kvart(item));
+                });
+;
+                metro.duljina = (int)metro.DuljinaPuta(stations);
             }
-            catch
-            {
-                return View();
-            }
-        }
 
-        //
-        // GET: /Distance/Edit/5
+            if (metro != null)
+                return View("Pogled2");
 
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
+                //return RedirectToAction("Distance", new Mapa(metro.Kvartovi,metro.Rute,metro.ImeMetroa) {}); 
 
-        //
-        // POST: /Distance/Edit/5
 
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
+            else return View("Pogled2");
+         }
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
 
-        //
-        // GET: /Distance/Delete/5
 
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
+      
+       
 
-        //
-        // POST: /Distance/Delete/5
 
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        
     }
 }

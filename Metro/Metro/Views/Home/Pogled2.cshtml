@@ -1,6 +1,27 @@
-﻿@{
-    ViewBag.Title = "Pogled2";
-   
-}
+﻿@model Metro.Models.Mapa
+
+@using Metro.Models
 
 <h2>Pogled2 @ViewBag.Message</h2>
+
+
+@{
+    var m = TempData["Metro"] as Mapa;    
+}
+<table>
+   
+    <tr>
+        <th>Kvartovi</th>
+        <th>Rute</th>
+        <th>Ime Metroa</th>
+        <th>Duljina Rute</th>
+    </tr>
+    <tr>
+      <td>@m.Kvartovi[0].KvartIme, @m.Kvartovi[1].KvartIme </td>
+      <td>@m.Rute[0].Start.KvartIme, </td>
+      <td>@m.Rute[0].Kraj.KvartIme</td>
+        
+      <td>@m.ImeMetroa</td>
+      <td>@m.duljina</td>
+    </tr>
+</table>

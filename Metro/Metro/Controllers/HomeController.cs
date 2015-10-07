@@ -94,11 +94,16 @@ namespace Metro.Controllers
                 }
                  Mapa metro = new Mapa(Kvartovi,Rute,"ZagrebMetro");
 
-                //treba mi metro za koji mi trebaju popis ovih ruta, da bi mogla racunati ostalo.
+            
                 TempData["Metro"] = metro;
-               
-                return View(Rute);
-               
+                TempData["CurrentDateTime"] = DateTime.Now; ;
+                TempData["MeaningOfLife"] = 42;
+                //Mapa metro2 = TempData.Peek("Metro");
+             
+                //TempData.Keep("Metro");
+                //return View(Rute);
+                //return RedirectToAction("distance", "Distance");
+                return View("Pogled2");
             }
             else throw new HttpException(404, "File not found");
         }
