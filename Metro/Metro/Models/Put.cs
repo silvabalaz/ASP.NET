@@ -16,12 +16,9 @@ namespace Metro.Models
            
         }
         */
-         public Put()
-        {
-            this.Stanice = new List<string>();
-        }
+       
 
-        public List<string> Stanice { get; set; }
+        public string Stanice { get; set; }
         //public Mapa MapaPuta { get; set; } 
         /*
         //Rekurzivna funkcija

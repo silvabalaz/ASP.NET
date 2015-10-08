@@ -25,7 +25,7 @@ namespace Metro.Controllers
         public ActionResult distance(List<string> Stanice)
         {
 
-            int duljina;
+            
 
             //Mapa metro = new Mapa(null,null,"ZagrebMetro");
             var metro = TempData["Metro"] as Mapa;
@@ -34,24 +34,23 @@ namespace Metro.Controllers
 
             if (Stanice != null)
             {
-                
+
                 List<Kvart> stations = new List<Kvart>(Stanice.Count);
 
                 Stanice.ForEach((item) =>
                 {
                     stations.Add(new Kvart(item));
                 });
-;
+                ;
                 metro.duljina = (int)metro.DuljinaPuta(stations);
+
+
+                return View(Stanice);
             }
-
-            if (metro != null)
-                return View("Pogled2");
-
-                //return RedirectToAction("Distance", new Mapa(metro.Kvartovi,metro.Rute,metro.ImeMetroa) {}); 
+            //return RedirectToAction("Distance", new Mapa(metro.Kvartovi,metro.Rute,metro.ImeMetroa) {}); 
 
 
-            else return View("Pogled2");
+            else return View(Stanice);
          }
 
 

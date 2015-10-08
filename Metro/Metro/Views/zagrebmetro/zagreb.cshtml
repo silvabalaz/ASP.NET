@@ -1,11 +1,10 @@
-﻿@model  Metro.Models.Put
+﻿
+@model  List<string>
 @using Metro.Models
 
-@{
-    ViewBag.Title = "Distance";
-}
 
- @using (Html.BeginForm("distance", "Distance", FormMethod.Post, new { id = "distanceStations" }))
+
+ @using (Html.BeginForm("zagreb", "zagrebmetro", FormMethod.Post, new { id = "zg" }))
  {   <p>Input stations:</p>
      
     <br />
@@ -22,19 +21,8 @@
 
 <br>
 
-<div id = "result">
-
-       
 
 
-</div>
-
-@foreach(var a in TempData){
- <p><b>Metro:</b> @a.Value.GetHashCode() <b>Vrijeme:</b>    @TempData["CurrentDateTime"] </p> }
-<p><b></b></p>
-
-
-    
 
 
 @section scripts{
@@ -43,20 +31,21 @@
     <script type="text/javascript">
         $(function () {
 
-            //var myObject =["MAKSIMIR", "SIGET","SPANSKO"];
-            $("#distanceStations").on("submit", function (e) {
+            var myObject =["MAKSIMIR", "SIGET","SPANSKO"];
+            $("#zg").on("submit", function (e) {
 
                 e.preventDefault();
-                var myObject = $('#distanceStations').serialize();
+                //var myObject = $('#zg').serialize();
 
                 $.ajax({
-                    url: '@Url.Action("distance", "Distance")', // "/Distance/distance",
-                    data: JSON.stringify({"stations": myObject}), //$('#distanceStations').serialize()
+                    url: '@Url.Action("zagrebPost", "zagrebmetro")', // "/Distance/distance",
+                    data: JSON.stringify({ "stations": myObject }), //$('#distanceStations').serialize()
                     type: "POST",
                     async: true,
                     contentType: 'application/json; charset=utf-8',
                     success: function (data) {
                         $("#result").html(data);
+                        console.log("bok");
                     }
                 });
 
@@ -64,8 +53,10 @@
             });
 
         });
-    
+
 
     </script>
     
 } 
+
+
