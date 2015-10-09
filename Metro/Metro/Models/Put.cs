@@ -18,7 +18,7 @@ namespace Metro.Models
         */
        
 
-        public string Stanice { get; set; }
+        public string[] stanice { get; set; }
         //public Mapa MapaPuta { get; set; } 
         /*
         //Rekurzivna funkcija

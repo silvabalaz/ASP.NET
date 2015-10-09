@@ -1,29 +1,30 @@
 ﻿
-@model  List<string>
+@model  Metro.Models.MyModel
 @using Metro.Models
 
 
 
- @using (Html.BeginForm("zagreb", "zagrebmetro", FormMethod.Post, new { id = "zg" }))
- {   <p>Input stations:</p>
+ @using (Html.BeginForm("zagrebPost", "zagrebmetro", FormMethod.Post, new { id = "zg" }))
+ {   
+     <p>Input stations:</p>
      
     <br />
-    @:First station @Html.TextBoxFor(x => x[0])<br/>
-    @:Second station @Html.TextBoxFor(x => x[1])<br />
-    @:Third station @Html.TextBoxFor(x => x[2])<br/>
-    @:Fourth station @Html.TextBoxFor(x => x[3])<br />
-    @:Fifth station @Html.TextBoxFor(x => x[4])<br />
+
+    @:First station @Html.TextBoxFor(x => x.stations[0])<br/>
+    @:Second station @Html.TextBoxFor(x => x.stations[1])<br />
+    @:Third station @Html.TextBoxFor(x => x.stations[2])<br/>
+    @:Fourth station @Html.TextBoxFor(x => x.stations[3])<br />
+    @:Fifth station @Html.TextBoxFor(x => x.stations[4])<br />
    
+  
     
     <input type="submit" value="Get distance" />
     
-}
+ }
+
+
 
 <br>
-
-
-
-
 
 @section scripts{
 
@@ -31,21 +32,25 @@
     <script type="text/javascript">
         $(function () {
 
-            var myObject =["MAKSIMIR", "SIGET","SPANSKO"];
+            //var myObject =["MAKSIMIR", "SIGET","SPANSKO"];
             $("#zg").on("submit", function (e) {
 
                 e.preventDefault();
-                //var myObject = $('#zg').serialize();
+                var myObject = $('#zg').serialize();
+
+            
 
                 $.ajax({
-                    url: '@Url.Action("zagrebPost", "zagrebmetro")', // "/Distance/distance",
+                    url: '@Url.Action("zagrebPost", "zagrebmetro")', // "/zagrebmetro/zagrebPost",
                     data: JSON.stringify({ "stations": myObject }), //$('#distanceStations').serialize()
                     type: "POST",
                     async: true,
                     contentType: 'application/json; charset=utf-8',
+                    traditional: true,
                     success: function (data) {
-                        $("#result").html(data);
                         console.log("bok");
+                        //var arr = JSON.parse(data);
+                        $("#result").html(data);
                     }
                 });
 
@@ -56,7 +61,7 @@
 
 
     </script>
-    
+    <script src="/Scripts/jquery.unobtrusive-ajax.min.js" type="text/javascript"></script>
 } 
 
 

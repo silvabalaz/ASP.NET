@@ -1,36 +1,20 @@
 ﻿
-@model  List<string>
+@model  Metro.Models.MyModel
 @using Metro.Models
 
 
-@{
-    ViewBag.Title = "zagrebPost";
-}
 
-<h2>zagrebPost</h2>
 
 <div id="result">
 
-      <dt>Duljina prva:
-    @Html.DisplayNameFor(model => model[0]) 
+      <dt>Duljina prva:/zagrebPost
+    @Html.DisplayNameFor(model => model.stations[0]) 
     </dt>
     <dd>ispis:
-     @Html.DisplayFor(model => model[0])
+     @Html.DisplayFor(model => model.stations[0])
     </dd>
 
-    <dt> Duljina druga:
-    @Html.DisplayNameFor(model => model[1])
-    </dt>
-    <dd>ispis:
-    @Html.DisplayFor(model => model[1])
-    </dd>
 
-    <dt>Duljina treca:
-    @Html.DisplayNameFor(model => model[2])
-    </dt>
-    <dd>ispis:
-    @Html.DisplayFor(model => model[2])
-    </dd>
 
 
 </div>

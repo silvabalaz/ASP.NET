@@ -14,15 +14,36 @@ namespace Metro.Controllers
 {
     public class zagrebmetroController : Controller
     {
-       
-       
+        //GET
 
-      // GET: /Distance/
-        [HttpGet]
         public ActionResult zagreb()
         {
             return View();
+
         }
+
+        [HttpPost]
+        public ActionResult zagrebPost(MyModel request)
+        {
+
+            MyModel stanice = new MyModel() { stations = new string[] {"Item1", "Item2", "Item3", "Item4"}, distance = 0 };
+
+            stanice.stations[0] = request.stations[0];
+
+            return View(request);
+            //return Json(stanice, JsonRequestBehavior.AllowGet);
+
+        }
+
+
+        /*
+        public ActionResult zagreb(MyModel request)
+        {
+
+            
+        }
+        */
+
         /*
         [HttpPost]
         public ActionResult zagrebPost(string[] stations) //List<string> Stanice)
@@ -50,11 +71,6 @@ namespace Metro.Controllers
             return View((object)stations);
         }  */
         
-        [HttpPost]
-        public JsonResult zagrebPost(Put[] stanice)
-        {
-            
-            return Json(stanice, "json");
-        }
+       
     }
 }
