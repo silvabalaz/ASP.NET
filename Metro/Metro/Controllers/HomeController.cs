@@ -22,8 +22,6 @@ namespace Metro.Controllers
 
             if (file != null && file.ContentLength > 0)
             {
-
-
                 var fileName = Path.GetFileName(file.FileName);
                 var dataFile = Server.MapPath("~/Datoteka");
                 var path = Path.Combine(dataFile, fileName);
@@ -34,11 +32,20 @@ namespace Metro.Controllers
                  //Mapa metro2 = TempData.Peek("Metro");
                 //TempData.Keep("Metro");
                 //return View(Rute);
-                //return RedirectToAction("distance", "Distance");
-                return View("Pogled2");
+                return RedirectToAction("zagrebPost", "zagrebmetro");
+                //return View("Pogled2");
             }
             else throw new HttpException(404, "File not found");
         }
+
+
+       
+             
+    
+
+         
+
+
 
  }
 

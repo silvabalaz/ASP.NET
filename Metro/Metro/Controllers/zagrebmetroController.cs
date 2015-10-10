@@ -26,15 +26,27 @@ namespace Metro.Controllers
         public ActionResult zagrebPost(MyModel1 request)
         {
 
-            MyModel1 stanice = new MyModel1() { stations = new string[] {""}};
-            MyModel2 duljina = new MyModel2() { distance = 0 };
+            var m = TempData["Metro"] as Mapa;    
+            
+            MyModel1 model = new MyModel1() { stations = new string[] {"bla"}};
 
-            stanice = request;
+          
+
+            model.stations = new string[request.stations.Length];
+            request.stations.CopyTo(model.stations, 0);
 
 
+            //List<Ruta> r = new List<Ruta>();
+            //var List = m.KonstrukcijaRuta();
+            /*
+            foreach(Ruta ru in List)
+            { r.Add(ru); }
+           int duljina = model.DuljinaPuta(r);
+            */
 
-            return View(stanice);
-           // return Json(stanice, JsonRequestBehavior.AllowGet);
+
+            return View(request);
+            //return Json(r, JsonRequestBehavior.AllowGet);
 
         }
 
