@@ -20,7 +20,7 @@ namespace Metro.Controllers
         {
             return View();
         }
-
+        /*
         [HttpPost]
         public ActionResult distance(List<string> Stanice)
         {
@@ -53,7 +53,7 @@ namespace Metro.Controllers
             else return View(Stanice);
          }
 
-
+        */
 
       
        

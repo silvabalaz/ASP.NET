@@ -16,37 +16,6 @@ namespace Metro.Controllers
             return View();
         }
 
-        /*
-        public ActionResult Unos()
-        {
-            //Stvoriti Metro
-            Metro<Kvartovi,Rute, ZagrebMetro> ZgM= new Metro<Ruta>();
-            // napraviti prvi element , tj. prvu Rutu u ZagrebMetro
-            Ruta Prva = new Ruta
-            {
-                Start = "MAKSIMIR",
-                Kraj = "SIGET",
-                Duljina = 5
-
-            };
-
-
-            return View();
-        }
-        
-        [HttpPost]
-        public ActionResult Pogled2()
-        {
-            ViewBag.Message = "Isprobavam  ViewBag.Message";
-            var serial ="SILVA";
-            //return Json(new { name = "SILVA", value = serial}, JsonRequestBehavior.AllowGet);
-            return View();
-        
-        }
-        */
-
-        // This action handles the form POST and the upload
-
         [HttpPost]
         public ActionResult Index(HttpPostedFileBase file)
         {
@@ -59,47 +28,10 @@ namespace Metro.Controllers
                 var dataFile = Server.MapPath("~/Datoteka");
                 var path = Path.Combine(dataFile, fileName);
                 file.SaveAs(path);
-                string userData = new StreamReader(file.InputStream).ReadToEnd();
-                List<Ruta> Rute = new List<Ruta>();
-                List<Kvart> Kvartovi = new List<Kvart>();
-
-                string[] sp = userData.Split(',');
-
-                foreach (string dataItem in sp)
-                {
-
-                    var results = dataItem.Split('-');
-
-                    string a = results[0];
-                    string a1 = a.ToLower();
-                    string b = results[1];
-                    var dot = b.Split(':');
-                    string c = dot[0];
-                    var d = dot[1];
-                    string c2 = c[0] + c.Substring(1).ToLower();
-                    char[] s = a1.ToCharArray();
-                    s[0] = char.ToUpper(s[0]);
-                    string a2 = new string(s);
-                    int duljina = Int32.Parse(d);
-                    Kvart kvart1 = new Kvart(a2);
-                    Kvart kvart2 = new Kvart(c2);
-
-                    Kvartovi.Add(kvart1);
-                    Kvartovi.Add(kvart2);
-
-                    Ruta temp = new Ruta(kvart1, kvart2, duljina);
-                    Rute.Add(temp);
-                  
-                   
-                }
-                 Mapa metro = new Mapa(Kvartovi,Rute,"ZagrebMetro");
-
-            
+                string userData = new StreamReader(file.InputStream).ReadToEnd(); 
+                Mapa metro = new Mapa("ZagrebMetro", userData );
                 TempData["Metro"] = metro;
-                TempData["CurrentDateTime"] = DateTime.Now; ;
-                TempData["MeaningOfLife"] = 42;
-                //Mapa metro2 = TempData.Peek("Metro");
-             
+                 //Mapa metro2 = TempData.Peek("Metro");
                 //TempData.Keep("Metro");
                 //return View(Rute);
                 //return RedirectToAction("distance", "Distance");

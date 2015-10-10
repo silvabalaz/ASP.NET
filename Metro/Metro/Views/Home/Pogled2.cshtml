@@ -11,19 +11,18 @@
  
 
 <table>
-   
+      <th>Ime Metroa: @m.ImeMetroa</th>
     <tr>
-        <th>Kvartovi</th>
-        <th>Rute</th>
-        <th>Ime Metroa</th>
+        <th>Start Rute</th>
+        <th>Kraj Rute</th>
         <th>Duljina Rute</th>
     </tr>
-    <tr>
-      <td>@m.Kvartovi[0].KvartIme, @m.Kvartovi[1].KvartIme </td>
-      <td>@m.Rute[0].Start.KvartIme, </td>
-      <td>@m.Rute[0].Kraj.KvartIme</td>
-        
-      <td>@m.ImeMetroa</td>
-      <td>@m.duljina</td>
-    </tr>
+    @{ var Lista = m.KonstrukcijaRuta();}
+    
+     @foreach (Ruta r in Lista) { 
+      <tr>   
+      <td>From @r.Start.KvartIme</td>
+      <td>to @r.Kraj.KvartIme </td>
+      <td>-> @r.Duljina </td> 
+   </tr>}
 </table>

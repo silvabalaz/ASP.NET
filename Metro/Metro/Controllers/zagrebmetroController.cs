@@ -23,26 +23,22 @@ namespace Metro.Controllers
         }
 
         [HttpPost]
-        public ActionResult zagrebPost(MyModel request)
+        public ActionResult zagrebPost(MyModel1 request)
         {
 
-            MyModel stanice = new MyModel() { stations = new string[] {"Item1", "Item2", "Item3", "Item4"}, distance = 0 };
+            MyModel1 stanice = new MyModel1() { stations = new string[] {""}};
+            MyModel2 duljina = new MyModel2() { distance = 0 };
 
-            stanice.stations[0] = request.stations[0];
+            stanice = request;
 
-            return View(request);
-            //return Json(stanice, JsonRequestBehavior.AllowGet);
+
+
+            return View(stanice);
+           // return Json(stanice, JsonRequestBehavior.AllowGet);
 
         }
 
 
-        /*
-        public ActionResult zagreb(MyModel request)
-        {
-
-            
-        }
-        */
 
         /*
         [HttpPost]
