@@ -9,7 +9,7 @@
 }
 
 <b>Duljina trazene rute:</b>@ViewBag.Message
-
+string c2 = c[0] + c.Substring(1).ToLower();
 
 <table>
       <th>Ime Metroa: @m.ImeMetroa</th>
@@ -21,9 +21,15 @@
     @{ var Lista = m.KonstrukcijaRuta();}
     
      @foreach (Ruta r in Lista) { 
-      <tr>   
-      <td>From @r.Start.KvartIme</td>
-      <td>to @r.Kraj.KvartIme </td>
+      <tr> 
+          @{ 
+       
+       
+       string kraj = r.Kraj.KvartIme[0] + r.Kraj.KvartIme.Substring(1).ToLower();
+       string start = char.ToUpper(r.Start.KvartIme[0]) + r.Start.KvartIme.Substring(1).ToLower();
+       }
+      <td>From @start</td>
+      <td>to @kraj </td>
       <td>-> @r.Duljina </td> 
  
    </tr>}
