@@ -8,61 +8,44 @@ namespace Metro.Models
     public class MyModel1
     {
 
-     
-        public string[] stations { get; set; }
-      
 
-        
-        public int DuljinaPuta( List<Ruta> Rute ) //nazivi kvartova kao stanica string[] put= {"MAKSIMIR","SIGET","SPANSKO"}
+        public string[] stations { get; set; }
+
+
+
+        public int DuljinaPuta(List<Ruta> Rute)
         {
             int duljina = 0;
-            string trenutnaLokacija = null;
-            //char a = '-';
-            //za svaku rutu u putu
-
-
-            foreach (string kvart in this.stations)
+          
+            
+            int brojStanica = stations.Length;
+            
+            for (int j = 0; j < brojStanica - 1; j++)
             {
-                
-                //if(kvart == a.ToString() )
-                //continue; 
-
-
-                if (trenutnaLokacija == null)
+                foreach(Ruta r in Rute)
                 {
-                    trenutnaLokacija = kvart;
-                    continue;
+
+
+                     if ((string.Compare(r.Start.KvartIme, this.stations[j]) == 0) && (string.Compare(r.Kraj.KvartIme, this.stations[j + 1]) == 0))
+                    //if ((r.Start.KvartIme == this.stations[j]) && (r.Kraj.KvartIme == this.stations[j + 1]))
+
+                   //( (Rute[i].Start.KvartIme.Equals(this.stations[j]) == true ) && (Rute[i].Start.KvartIme.Equals(this.stations[j]) ==true) )
+                    {
+                        duljina += r.Duljina;
+                        break;
+                    }
+
+
 
                 }
 
-                //pronađi zadanu rutu (put), 
-
-                Ruta trazi =
-                    (from ruta in Rute
-                     where ruta.Start.KvartIme == trenutnaLokacija
-                          && ruta.Kraj.KvartIme == kvart
-                     orderby ruta.Duljina
-                     select ruta).DefaultIfEmpty(null).First();
-
-
-
-                if (trazi == null)
-                {
-                    // NO SUCH ROUTE
-                    return 0;
-
-                }
-
-                duljina += trazi.Duljina;
-                trenutnaLokacija = kvart;
-
-            }
-
-
+            }  
+            
+           
             return duljina;
-
+            
         }
-        
+
 
     }
 }

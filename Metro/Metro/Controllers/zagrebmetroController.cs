@@ -31,7 +31,9 @@ namespace Metro.Controllers
             Mapa metro = new Mapa("ZagrebMetro", ulaznaDatoteka);
             var Lista = metro.KonstrukcijaRuta();
 
-            MyModel1 model = new MyModel1() { stations = new string[] { "maksimir", "Siget", "Spansko" } };
+            MyModel1 model = new MyModel1() { stations = new string[] { "MAKSIMIR", "SIGET", "SPANSKO" } };
+
+            model = request;
 
             List<Ruta> r = new List<Ruta>();
             foreach (Ruta ru in Lista)

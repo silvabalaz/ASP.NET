@@ -31,16 +31,7 @@ namespace Metro.Controllers
                 TempData["Metro"] = userData;
                 TempData["M"] = metro;
 
-                var Lista = metro.KonstrukcijaRuta();
-
-                MyModel1 model = new MyModel1() { stations = new string[] { "maksimir","Siget","Spansko" } };
-               
-                List<Ruta> r = new List<Ruta>();
-                foreach (Ruta ru in Lista)
-                { r.Add(ru); }
-
-                int duljina = model.DuljinaPuta(r);
-                 ViewBag.Message = duljina;
+              
                  //Mapa metro2 = TempData.Peek("Metro");
                 //TempData.Keep("Metro");
                 //return View(Rute);
