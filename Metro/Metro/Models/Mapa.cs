@@ -8,10 +8,7 @@ namespace Metro.Models
 {
     public class Mapa
     {
-        
-        
-
-        
+      
         public Mapa(string imeMetroa , string izvor) 
         {
             ImeMetroa = imeMetroa;
@@ -23,6 +20,7 @@ namespace Metro.Models
 
              List<Ruta> Rute = new List<Ruta>();
 
+            
 
              string[] sp = this.Izvor.Split(',');
 

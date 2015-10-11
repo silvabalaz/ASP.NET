@@ -2,13 +2,14 @@
 
 @using Metro.Models
 
-<h2>Pogled2 @ViewBag.Message</h2>
 
 
 @{
-    var m = TempData["Metro"] as Mapa;    
+    var m = TempData["M"] as Mapa;
 }
- 
+
+<b>Duljina trazene rute:</b>@ViewBag.Message
+
 
 <table>
       <th>Ime Metroa: @m.ImeMetroa</th>
@@ -24,5 +25,28 @@
       <td>From @r.Start.KvartIme</td>
       <td>to @r.Kraj.KvartIme </td>
       <td>-> @r.Duljina </td> 
+ 
    </tr>}
+     
 </table>
+
+<table>
+      <th>Ime Metroa: @m.ImeMetroa</th>
+    <tr>
+        <th>Start Rute</th>
+        <th>Kraj Rute</th>
+        <th>Duljina Rute</th>
+    </tr>
+    @{ var lista = m.KonstrukcijaRuta();}
+    
+     @foreach (Ruta r in lista) { 
+      <tr>   
+      <td>From @r.Start.KvartIme</td>
+      <td>to @r.Kraj.KvartIme </td>
+      <td>-> @r.Duljina </td> 
+ 
+   </tr>}
+     
+</table>
+
+<b><a href="http://localhost:50109/ "> Back to main page</a> </b>

@@ -10,10 +10,10 @@ namespace Metro.Models
 
      
         public string[] stations { get; set; }
-        public int distance { get; set; }
+      
 
-        /*
-        public int calculateDistance(string[] places) //nazivi kvartova kao stanica string[] put= {"MAKSIMIR","SIGET","SPANSKO"}
+        
+        public int DuljinaPuta( List<Ruta> Rute ) //nazivi kvartova kao stanica string[] put= {"MAKSIMIR","SIGET","SPANSKO"}
         {
             int duljina = 0;
             string trenutnaLokacija = null;
@@ -21,16 +21,16 @@ namespace Metro.Models
             //za svaku rutu u putu
 
 
-            foreach (string kvart in places)
+            foreach (string kvart in this.stations)
             {
                 
-                if(kvart == a.ToString() )
-                continue; 
+                //if(kvart == a.ToString() )
+                //continue; 
 
 
                 if (trenutnaLokacija == null)
                 {
-                    trenutnaLokacija = kvart.KvartIme;
+                    trenutnaLokacija = kvart;
                     continue;
 
                 }
@@ -38,9 +38,9 @@ namespace Metro.Models
                 //pronađi zadanu rutu (put), 
 
                 Ruta trazi =
-                    (from ruta in this.Rute
+                    (from ruta in Rute
                      where ruta.Start.KvartIme == trenutnaLokacija
-                          && ruta.Kraj.KvartIme == kvart.KvartIme
+                          && ruta.Kraj.KvartIme == kvart
                      orderby ruta.Duljina
                      select ruta).DefaultIfEmpty(null).First();
 
@@ -49,12 +49,12 @@ namespace Metro.Models
                 if (trazi == null)
                 {
                     // NO SUCH ROUTE
-                    return null;
+                    return 0;
 
                 }
 
                 duljina += trazi.Duljina;
-                trenutnaLokacija = kvart.KvartIme;
+                trenutnaLokacija = kvart;
 
             }
 
@@ -62,7 +62,7 @@ namespace Metro.Models
             return duljina;
 
         }
-        */
+        
 
     }
 }
