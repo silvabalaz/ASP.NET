@@ -16,17 +16,17 @@ namespace Metro.Tests.Models
         [TestMethod]
         public void DuljinaPutaTest()
         {
+           
              //arrange
-            var Lista = new List<Ruta>
+            var Lista = new List<Ruta>()
             { 
 
                 new Ruta(new Kvart("MAKSIMIR"), new Kvart("SIGET"),5), 
-                new Ruta(new Kvart("SIGET"),new Kvart("SIGET"),4), 
+                new Ruta(new Kvart("SIGET"),new Kvart("SPANSKO"),4), 
                 new Ruta(new Kvart("SPANSKO"),new Kvart("MEDVESCAK"),8),
                 new Ruta(new Kvart("MEDVESCAK"),new Kvart("SPANSKO"), 8), 
                 new Ruta(new Kvart("MEDVESCAK"),new Kvart("DUBRAVA"),6), 
                 new Ruta(new Kvart("MAKSIMIR"), new Kvart("MEDVESCAK"),5), 
-                new Ruta(new Kvart("MAKSIMIR"),new Kvart("MEDVESCAK"),5),
                 new Ruta(new Kvart("SPANSKO"),new Kvart("DUBRAVA"), 2), 
                 new Ruta(new Kvart("DUBRAVA"),new Kvart("SIGET"),3), 
                 new Ruta(new Kvart("MAKSIMIR"),new Kvart("DUBRAVA"),7) 
@@ -36,8 +36,8 @@ namespace Metro.Tests.Models
             MyModel1 model1 = new MyModel1() { stations = new string[] { "MAKSIMIR", "SIGET", "SPANSKO" } };
             MyModel1 model2 = new MyModel1() { stations = new string[] { "MAKSIMIR", "MEDVESCAK" } };
             MyModel1 model3 = new MyModel1() { stations = new string[] { "MAKSIMIR", "MEDVESCAK", "SPANSKO" } };
-            MyModel1 model4 = new MyModel1() { stations = new string[] { "MAKSIMIR", "DUBRAVA", "SIGET","","" } };
-            MyModel1 model5 = new MyModel1() { stations = new string[] { "MAKSIMIR", "SIGET", "SPANSKO" } };
+            MyModel1 model4 = new MyModel1() { stations = new string[] { "MAKSIMIR", "DUBRAVA", "SIGET","SPANSKO","MEDVESCAK" } };
+            MyModel1 model5 = new MyModel1() { stations = new string[] { "MAKSIMIR", "DUBRAVA", "MEDVESCAK" } };
 
             //act
             int distance1 = model1.DuljinaPuta(Lista);
@@ -47,11 +47,11 @@ namespace Metro.Tests.Models
             int distance5 = model5.DuljinaPuta(Lista);
 
            //assert
-            Assert.AreEqual<int>(9, distance1); //ispadne 5
-            //Assert.AreEqual<int>(5, distance2); //OK
-            //Assert.AreEqual<int>(13, distance3); //OK
-            //Assert.AreEqual<int>(22, distance4); //ispadne 10
-           // Assert.AreEqual<int>(1999, distance4); //NO SUCH ROUTE, ispadne 10
+            Assert.AreEqual<int>(9, distance1); //OK
+            Assert.AreEqual<int>(5, distance2); //OK
+            Assert.AreEqual<int>(13, distance3); //OK
+            Assert.AreEqual<int>(22, distance4); //OK
+            Assert.AreEqual<int>(1999, distance5); //NO SUCH ROUTE,OK
         }
     }
 }

@@ -20,25 +20,30 @@ namespace Metro.Models
             
             int brojStanica = stations.Length;
             
-            for (int j = 0; j < brojStanica - 1; j++)
+            for (int j = 0; j < brojStanica -1 ; j++)
             {
+                int nasao = 0;
+
                 foreach(Ruta r in Rute)
                 {
 
 
-                     //if ((string.Compare(r.Start.KvartIme, this.stations[j]) == 0) && (string.Compare(r.Kraj.KvartIme, this.stations[j + 1]) == 0))
-                    if ((r.Start.KvartIme == this.stations[j])&&(r.Kraj.KvartIme == this.stations[j + 1]))
+                     if ((string.Compare(r.Start.KvartIme, this.stations[j].ToUpper()) == 0)&&((string.Compare(r.Kraj.KvartIme, this.stations[j + 1].ToUpper()) == 0)))
+                    //if ((r.Start.KvartIme == this.stations[j])&&(r.Kraj.KvartIme == this.stations[j + 1]))
 
                    //( (Rute[i].Start.KvartIme.Equals(this.stations[j]) == true ) && (Rute[i].Start.KvartIme.Equals(this.stations[j]) ==true) )
                     {
                         duljina += r.Duljina;
-                        break;
+                        nasao = 1;
+                        break; //nema ponavljanja ruta
                     }
 
 
 
                 }
 
+                if (nasao == 0)
+                    return 1999;
             }  
             
            
