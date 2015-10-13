@@ -28,10 +28,7 @@ namespace Metro.Models
                 {
 
 
-                     if ((string.Compare(r.Start.KvartIme, this.stations[j].ToUpper()) == 0)&&((string.Compare(r.Kraj.KvartIme, this.stations[j + 1].ToUpper()) == 0)))
-                    //if ((r.Start.KvartIme == this.stations[j])&&(r.Kraj.KvartIme == this.stations[j + 1]))
-
-                   //( (Rute[i].Start.KvartIme.Equals(this.stations[j]) == true ) && (Rute[i].Start.KvartIme.Equals(this.stations[j]) ==true) )
+                     if ((string.Compare(r.Start.KvartIme, this.stations[j]) == 0)&&((string.Compare(r.Kraj.KvartIme, this.stations[j + 1]) == 0)))
                     {
                         duljina += r.Duljina;
                         nasao = 1;
@@ -43,7 +40,7 @@ namespace Metro.Models
                 }
 
                 if (nasao == 0)
-                    return 1999;
+                    return 1999; //NO SUCH ROUTE
             }  
             
            
