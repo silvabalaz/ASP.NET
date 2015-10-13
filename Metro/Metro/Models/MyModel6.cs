@@ -5,11 +5,9 @@ using System.Web;
 
 namespace Metro.Models
 {
-    public class MyModel4
+    public class MyModel6
     {
 
-
-        public int stops { get; set; }
         public class Pair<string, string> //stations
         {
             public Pair()
@@ -18,7 +16,7 @@ namespace Metro.Models
 
             public Pair(string Start, string End)
             {
-                this.start= Start;
+                this.start = Start;
                 this.end = End;
             }
 
@@ -27,18 +25,11 @@ namespace Metro.Models
         };
 
 
-        public int PutBezCiklusa(Kvart start, List<Ruta> Rute)
+        public Ruta NajkracaRuta(List<Ruta> Rute, List<Ruta> Zadana)
         {
-
-            for (int i = 0; i < 6; i++)
-            { 
-                    
             
-            
-            
-            }
 
-
+            return (Ruta)minRuta;
         }
     }
 }

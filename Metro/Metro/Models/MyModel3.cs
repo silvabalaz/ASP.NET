@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Text;
+
 
 namespace Metro.Models
 {
@@ -11,32 +13,43 @@ namespace Metro.Models
         public string[] roudtrips { get; set; }
         
 
-        public int PutCiklus(Kvart start, int maxPut, List<Ruta> Rute)
+        public int PutCiklus(Kvart start, List<Ruta> Rute)
         {
-           int nasao = 0;
+            count = 0;
 
            for(int i = 0; i < 4; i++  )
-
+           {
                 if (Rute[i].Start.KvartIme == start.KvartIme)
                 {
-                  while (Rute[i - 1].Kraj.KvartIme == Rute[i].Start.KvartIme)
-                   {      
+                    string temp = roudtrips.Append("-");
+                    temp.Append(start.KvartIme);
 
-                    if (Rute[i].Kraj.KvartIme == start.KvartIme)
+                    while (Rute[i].Kraj.KvartIme == Rute[i + 1].Start.KvartIme)
                     {
-                        nasao ++;;
-                        break;
-                    
-                    }
-                   }
-                
-                 if (nasao > 0) break;
+                        roudtrips.Append(Rute[i].Kraj.KvartIme);
 
+                        if (Rute[i + 1].Kraj.KvartIme == start.KvartIme)
+                        {
+                            count++;
+                            roudtrips.Append(start.KvartIme);
+                            break;
+
+                        }
+
+
+                     
+                    }
+                }
             }
 
-            return nasao;
+          return count;
         }
             
+
+
+
+
+        /*
             
             var minRuta =
                 (from ruta in Rute
@@ -129,7 +142,7 @@ namespace Metro.Models
         
 
         
-
+        */
 
 
 
