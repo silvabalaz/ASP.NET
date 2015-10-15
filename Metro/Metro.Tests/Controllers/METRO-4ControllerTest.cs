@@ -11,18 +11,21 @@ using System.Web.Script.Serialization;
 
 namespace Metro.Tests.Controllers
 {
-    [TestClass]
-    public class zagrebmetroControllerTest
+    class METRO_4ControllerTest
+    {
+
+         [TestClass]
+    public class metro4ControllerTest
     {
 
         [TestMethod]
-        public void zagrebTest()
+        public void metro4Test()
         {
 
             // Arrange
-            zagrebmetroController controller = new zagrebmetroController();
+            METRO_4Controller controller = new METRO_4Controller();
             //Act
-            ViewResult result = controller.zagreb() as ViewResult;
+            ViewResult result = controller.metro4() as ViewResult;
             //Assert 
             Assert.IsNotNull(result);
 
@@ -30,17 +33,17 @@ namespace Metro.Tests.Controllers
 
 
         [TestMethod]
-        public void zagrebPostTest()
+        public void metro4PostTest()
         {
 
            
             //Arange
-            MyModel1  request = new MyModel1() { stations = new string[] { "MAKSIMIR", "DUBRAVA" } };
-            MyModel2 expected = new MyModel2() { distance = 7 };
+            MyModel4  request = new MyModel4() { stations = new List<Kvart>{ new Kvart("MAKSIMIR"), new Kvart("SPANSKO") }, stops = 4 };
+            MyModel5 expected = new MyModel5() { count= 3 , stops = new string[] {"SIGET-SPANSKO-MEDVESCAK","MEDVESCAK-SPANSKO-MEDVESCAK","MEDVESCAK-DUBRAVA-SIGET"} };
 
-            zagrebmetroController controller = new zagrebmetroController();
+            METRO_4Controller controller = new METRO_4Controller();
             //Act
-            JsonResult result = controller.zagrebPost(request) as JsonResult;
+            JsonResult result = controller.metro4Post(request) as JsonResult;
             string Json = new JavaScriptSerializer().Serialize(result.Data);
             string expectedJson = new JavaScriptSerializer().Serialize(expected);
           
@@ -49,5 +52,7 @@ namespace Metro.Tests.Controllers
            Assert.IsNotNull(result);
            Assert.AreEqual(expectedJson, Json);
         }
+
+
     }
 }

@@ -1,0 +1,65 @@
+﻿@model  Metro.Models.MyModel1
+@using Metro.Models
+
+
+
+ @using (Html.BeginForm("metro3Get", "metro3", FormMethod.Get, new { id = "metro3" }))
+ {   
+     <p>Input station:</p>
+     
+    <br />
+
+    @:Start and end: @Html.TextBoxFor(x => x.Kvart.KvartIme, new { id = "First" })<br/>
+
+
+  
+    
+    <input type="submit" value="Get roudtrips" />
+    
+ }
+
+
+
+<br>
+
+@section scripts{
+
+    
+    <script type="text/javascript">
+        $(function () {
+
+           
+            $("#metro3").on("submit", function (e) {
+
+                e.preventDefault();
+             
+
+                var request = [];
+                if($('#First').val() != "")
+                    request.push($('#First').val());
+             
+
+            
+
+                $.ajax({
+                    url: '@Url.Action("METRO-3", "metro3Get")', 
+                    data: JSON.stringify({ stations: request }),
+                    type: "GET",
+                    async: true,
+                    contentType: 'application/json; charset=utf-8',
+                    traditional: true,
+                    success: function (data) {
+                        console.log("OK");
+                        $("#result").html(data);
+                    }
+                });
+
+
+            });
+
+        });
+
+
+    </script>
+    <script src="/Scripts/jquery.unobtrusive-ajax.min.js" type="text/javascript"></script>
+} 

@@ -6,6 +6,48 @@ using System.Data.Entity;
 
 namespace Metro.Models
 {
+
+
+    public class Kvart
+    {
+        //konstruktor
+
+        public Kvart(string kvartIme)
+        {
+            KvartIme = kvartIme;
+
+        }
+
+        public string KvartIme { get; set; }
+
+
+    }
+
+
+    public class Ruta
+    {
+
+        //konstruktor 
+
+        public Ruta(Kvart start, Kvart kraj, int duljina)
+        {
+            Start = start;
+            Kraj = kraj;
+            Duljina = duljina;
+
+        }
+
+        public Kvart Start { get; set; }
+
+        public Kvart Kraj { get; set; }
+
+        public int Duljina { get; set; }
+
+
+    }
+
+
+
     public class Mapa
     {
       

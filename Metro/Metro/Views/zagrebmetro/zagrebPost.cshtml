@@ -2,6 +2,10 @@
 @model  Metro.Models.MyModel1
 @using Metro.Models
 
+
+
+
+
 <b>Duljina trazene rute:</b>@ViewBag.Message
 
 
@@ -11,7 +15,10 @@
     @Html.DisplayNameFor(model => model.stations[0]) 
     </dt>
     <dd>ispis:
+
      @Html.DisplayFor(model => model.stations[0])
+     @Html.DisplayFor(model => model.stations[1])
+     @Html.DisplayFor(model => model.stations[2])
     </dd>
 
 

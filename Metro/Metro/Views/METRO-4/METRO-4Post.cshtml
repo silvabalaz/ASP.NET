@@ -1,0 +1,29 @@
+﻿
+@model  Metro.Models.MyModel5
+@using Metro.Models
+
+
+
+
+
+
+
+
+<div id="result">
+    <b>Number of requested roudtrips:</b> 
+    @Html.DisplayFor(model => model.count)
+    <b>Roudtrips:</b>
+    @Html.DisplayNameFor(model => model.stops[0]) 
+    </dt>
+    <dd>ispis:
+
+     @Html.DisplayNameFor(model => model.stops[1])
+     @Html.DisplayFor(model => model.stops[1])
+     @Html.DisplayNameFor(model => model.stops[2])
+     @Html.DisplayFor(model => model.stops[2])
+    </dd>
+
+
+
+
+</div>

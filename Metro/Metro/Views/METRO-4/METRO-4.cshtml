@@ -1,20 +1,18 @@
 ﻿
-@model  Metro.Models.MyModel1
+@model  Metro.Models.Kvart
 @using Metro.Models
 
 
 
- @using (Html.BeginForm("zagrebPost", "zagrebmetro", FormMethod.Post, new { id = "zg" }))
+ @using (Html.BeginForm("metro4Post", "METRO-4", FormMethod.Post, new { id = "metro4" }))
  {   
      <p>Input stations:</p>
      
     <br />
 
-    @:First station @Html.TextBoxFor(x => x.stations[0],new { id = "First" })<br/>
-    @:Second station @Html.TextBoxFor(x => x.stations[1],new { id = "Second" })<br />
-    @:Third station @Html.TextBoxFor(x => x.stations[2],new { id = "Third" })<br/>
-    @:Fourth station @Html.TextBoxFor(x => x.stations[3],new { id = "Fourth" })<br />
-    @:Fifth station @Html.TextBoxFor(x => x.stations[4],new { id = "Fifth" })<br />
+    @:First station @Html.TextBoxFor(x => x.Kvart.KvartIme,new { id = "First" })<br/>
+    @:Second station @Html.TextBoxFor(x => x.Kvart.KvartIme,new { id = "Second" })<br />
+ 
    
   
     
@@ -33,7 +31,7 @@
         $(function () {
 
            
-            $("#zg").on("submit", function (e) {
+            $("#metro4").on("submit", function (e) {
 
                 e.preventDefault();
              
@@ -43,17 +41,12 @@
                     request.push($('#First').val());
                 if ($('#Second').val() != "")
                     request.push($('#Second').val());
-                if ($('#Third').val() != "")
-                    request.push($('#Third').val());
-                if ($('#Fourth').val() != "")
-                    request.push($('#Fourth').val());
-                if ($('#Fifth').val() != "")
-                    request.push($('#Fifth').val());
+              
 
             
 
                 $.ajax({
-                    url: '@Url.Action("zagrebPost", "zagrebmetro")', // "/zagrebmetro/zagrebPost",
+                    url: '@Url.Action("metro4Post", "METRO-4")', // "/METRO-4/metro4Post",
                     data: JSON.stringify({ stations: request }),
                     type: "POST",
                     async: true,

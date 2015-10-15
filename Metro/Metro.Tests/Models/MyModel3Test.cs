@@ -7,17 +7,13 @@ using Metro.Models;
 
 namespace Metro.Tests.Models
 {
-    [TestClass]
-    public class MyModel1Test
+    class MyModel3Test
     {
-        
-       
-       
         [TestMethod]
-        public void DuljinaPutaTest()
+        public void PutCiklusTest()
         {
-           
-             //arrange
+
+            //arrange
             var Lista = new List<Ruta>()
             { 
 
@@ -32,11 +28,11 @@ namespace Metro.Tests.Models
                 new Ruta(new Kvart("MAKSIMIR"),new Kvart("DUBRAVA"),7) 
             };
 
-    
+
             MyModel1 model1 = new MyModel1() { stations = new string[] { "MAKSIMIR", "SIGET", "SPANSKO" } };
             MyModel1 model2 = new MyModel1() { stations = new string[] { "MAKSIMIR", "MEDVESCAK" } };
             MyModel1 model3 = new MyModel1() { stations = new string[] { "MAKSIMIR", "MEDVESCAK", "SPANSKO" } };
-            MyModel1 model4 = new MyModel1() { stations = new string[] { "MAKSIMIR", "DUBRAVA", "SIGET","SPANSKO","MEDVESCAK" } };
+            MyModel1 model4 = new MyModel1() { stations = new string[] { "MAKSIMIR", "DUBRAVA", "SIGET", "SPANSKO", "MEDVESCAK" } };
             MyModel1 model5 = new MyModel1() { stations = new string[] { "MAKSIMIR", "DUBRAVA", "MEDVESCAK" } };
 
             //act
@@ -46,12 +42,14 @@ namespace Metro.Tests.Models
             int distance4 = model4.DuljinaPuta(Lista);
             int distance5 = model5.DuljinaPuta(Lista);
 
-           //assert
+            //assert
             Assert.AreEqual<int>(9, distance1); //OK
             Assert.AreEqual<int>(5, distance2); //OK
             Assert.AreEqual<int>(13, distance3); //OK
             Assert.AreEqual<int>(22, distance4); //OK
             Assert.AreEqual<int>(7, distance5); //NO SUCH ROUTE,OK
         }
+
+
     }
 }

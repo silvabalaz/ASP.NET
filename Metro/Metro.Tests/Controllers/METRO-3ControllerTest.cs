@@ -11,18 +11,20 @@ using System.Web.Script.Serialization;
 
 namespace Metro.Tests.Controllers
 {
-    [TestClass]
-    public class zagrebmetroControllerTest
+    class METRO_3ControllerTest
+    {
+         [TestClass]
+    public class METRO_3ControllerTest
     {
 
         [TestMethod]
-        public void zagrebTest()
+        public void metro3Test()
         {
 
             // Arrange
-            zagrebmetroController controller = new zagrebmetroController();
+            METRO_3Controller controller = new METRO_3Controller();
             //Act
-            ViewResult result = controller.zagreb() as ViewResult;
+            ViewResult result = controller.metro3() as ViewResult;
             //Assert 
             Assert.IsNotNull(result);
 
@@ -30,17 +32,17 @@ namespace Metro.Tests.Controllers
 
 
         [TestMethod]
-        public void zagrebPostTest()
+        public void metro3GetTest()
         {
 
-           
+         
             //Arange
-            MyModel1  request = new MyModel1() { stations = new string[] { "MAKSIMIR", "DUBRAVA" } };
-            MyModel2 expected = new MyModel2() { distance = 7 };
+           string request = "SPANSKO";
+            MyModel3 expected = new MyModel3() { count = 2,  roudtrips = new string[] { "SPANSKO-MEDVESCAK-SPANSKO", "SPANSKO-DUBRAVA-SIGET-SPANSKO" } };
 
-            zagrebmetroController controller = new zagrebmetroController();
+            METRO_3Controller controller = new METRO_3Controller();
             //Act
-            JsonResult result = controller.zagrebPost(request) as JsonResult;
+            JsonResult result = controller.metro3Get(request) as JsonResult;
             string Json = new JavaScriptSerializer().Serialize(result.Data);
             string expectedJson = new JavaScriptSerializer().Serialize(expected);
           
@@ -49,5 +51,8 @@ namespace Metro.Tests.Controllers
            Assert.IsNotNull(result);
            Assert.AreEqual(expectedJson, Json);
         }
+
+
+
     }
 }

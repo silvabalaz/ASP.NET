@@ -14,52 +14,44 @@ namespace Metro
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
 
+    
+
        routes.MapRoute(
-       name: "Distance",
-       url: "Distance/distance",
-       defaults: new { controller = "Distance", action = "distance", id = UrlParameter.Optional }
-       );
+   name: "zg1",
+   url: "zagrebmetro/zagrebPost",
+   defaults: new { controller = "zagrebmetro", action = "zagrebPost", id = UrlParameter.Optional }
+   );
+
+       routes.MapRoute(
+     name: "zg",
+     url: "zagrebmetro/zagreb",
+     defaults: new { controller = "zagrebmetro", action = "zagreb", id = UrlParameter.Optional }
+     );
+     
 
          routes.MapRoute(
-         name: "FormaUpload",
-         url: "Home/Spremljeno",
-         defaults: new { controller = "Home", action = "Upload", id = UrlParameter.Optional }
+         name: "metro3",
+         url: "zagreb-metro/trip/round/count",
+         defaults: new { controller = "METRO-3", action = "metro3", id = UrlParameter.Optional }
          );
 
-   
+         routes.MapRoute(
+                  name: "metro4",
+                  url: "zagreb-metro/trip/count",
+                  defaults: new { controller = "METRO-4", action = "metro4", id = UrlParameter.Optional }
+                  );
 
-        routes.MapRoute(
-        name: "PregledRuta",
-        url: "Home",
-        defaults: new { controller = "Home", action = "PregledRuta", id = UrlParameter.Optional }
-        );
+         routes.MapRoute(
+      name: "metro5",
+      url: "zagreb-metro/trip/shortest",
+      defaults: new { controller = "METRO-5", action = "metro5", id = UrlParameter.Optional }
+      );
 
-
-        
-
-
-            routes.MapRoute(
-            name: "Ruta",
-            url: "ObjektRuta/Details",
-            defaults: new { controller = "DodajRutuIspisi", action = "Details", id = UrlParameter.Optional }
-            );
-
-            //probni , bitno je kojim redoslijedom su napisani 
-            routes.MapRoute(
-               name: "Unos",
-               url: "U",
-               defaults: new { controller = "Home", action = "Unos", id = UrlParameter.Optional }
-           );
-
-        
-
-            routes.MapRoute(
-            name: "Pocetna",
-            url: "",
-            defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-        );
-
-
+         routes.MapRoute(
+     name: "metro7",
+     url: "zagreb-metro/trip/bonus",
+     defaults: new { controller = "METRO-7", action = "metro7", id = UrlParameter.Optional }
+     );
             routes.MapRoute(
             name: "Default",
             url: "{controller}/{action}/{id}",

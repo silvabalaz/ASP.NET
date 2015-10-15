@@ -12,11 +12,11 @@ namespace Metro.Models
         public int count { get; set; }
         public string[] roudtrips { get; set; }
         
-
-        public int PutCiklus(Kvart start, List<Ruta> Rute)
+        
+        public MyModel3 PutCiklus(Kvart start, List<Ruta> Rute)
         {
             count = 0;
-
+            /*
            for(int i = 0; i < 4; i++  )
            {
                 if (Rute[i].Start.KvartIme == start.KvartIme)
@@ -40,11 +40,11 @@ namespace Metro.Models
                      
                     }
                 }
-            }
+            }  */
 
-          return count;
+          return this;
         }
-            
+           
 
 
 
