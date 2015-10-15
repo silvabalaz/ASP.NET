@@ -28,26 +28,17 @@ namespace Metro.Tests.Models
                 new Ruta(new Kvart("MAKSIMIR"),new Kvart("DUBRAVA"),7) 
             };
 
-
-            MyModel1 model1 = new MyModel1() { stations = new string[] { "MAKSIMIR", "SIGET", "SPANSKO" } };
-            MyModel1 model2 = new MyModel1() { stations = new string[] { "MAKSIMIR", "MEDVESCAK" } };
-            MyModel1 model3 = new MyModel1() { stations = new string[] { "MAKSIMIR", "MEDVESCAK", "SPANSKO" } };
-            MyModel1 model4 = new MyModel1() { stations = new string[] { "MAKSIMIR", "DUBRAVA", "SIGET", "SPANSKO", "MEDVESCAK" } };
-            MyModel1 model5 = new MyModel1() { stations = new string[] { "MAKSIMIR", "DUBRAVA", "MEDVESCAK" } };
+            string request = "SPANSKO";
+            MyModel3 expected = new MyModel3() { count= 2, roudtrips = new string[] { "SPANSKO-MEDVESCAK-SPANSKO","SPANSKO-DUBRAVA-SIGET-SPANSKO" } };
+          
 
             //act
-            int distance1 = model1.DuljinaPuta(Lista);
-            int distance2 = model2.DuljinaPuta(Lista);
-            int distance3 = model3.DuljinaPuta(Lista);
-            int distance4 = model4.DuljinaPuta(Lista);
-            int distance5 = model5.DuljinaPuta(Lista);
+            //MyModel3 result = request.PutCiklus(Lista);
+        
 
             //assert
-            Assert.AreEqual<int>(9, distance1); //OK
-            Assert.AreEqual<int>(5, distance2); //OK
-            Assert.AreEqual<int>(13, distance3); //OK
-            Assert.AreEqual<int>(22, distance4); //OK
-            Assert.AreEqual<int>(7, distance5); //NO SUCH ROUTE,OK
+           // Assert.AreEqual(expected, result); 
+          
         }
 
 
