@@ -1,4 +1,4 @@
-﻿@model  Metro.Models.MyModel6
+﻿@model  Metro.Models.Kvart
 @using Metro.Models
 
 
@@ -9,11 +9,11 @@
      
     <br />
 
-    @:Start: @Html.TextBoxFor(x => x.Kvart.KvartIme, new { id = "First" })<br/>
+    @:Start: @Html.TextBoxFor(x => x.KvartIme, new { id = "First" })<br/>
 
       <br />
 
-    @:End: @Html.TextBoxFor(x => x.Kvart.KvartIme, new { id = "First" })<br/>
+    @:End: @Html.TextBoxFor(x => x.KvartIme, new { id = "First" })<br/>
 
 
   
@@ -47,7 +47,7 @@
             
 
                 $.ajax({
-                    url: '@Url.Action("METRO-7", "metro7Post")', 
+                    url: '@Url.Action("METRO7", "metro7Post")', 
                     data: JSON.stringify({ stations: request }),
                     type: "POST",
                     async: true,

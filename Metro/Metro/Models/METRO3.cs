@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Text;
-
+using Metro.Models;
 
 namespace Metro.Models
 {
@@ -11,12 +11,91 @@ namespace Metro.Models
     {
         public int count { get; set; }
         public string[] roudtrips { get; set; }
+
+
+
+        public Ruta[] SusjedniKvartovi(Kvart start, List<Ruta> Rute)
+        { 
+            return
+                (from ruta in Rute
+                 where ruta.Start.KvartIme == start.KvartIme
+                 select ruta).ToArray<Ruta>();
+                
+        } // polje [ruta("Spansko""Medvescak"),ruta("Spansko""Dubrava")]
+
+
+
+
+        public List<string> Stanice(Kvart start)
+        {
+            List<string> result = new List<string>();
+            result.Add(start.KvartIme);
         
-        
+
+            //susjedni Kvartovi
+
+            Ruta[] susjedni = SusjedniKvartovi(start,Rute); //unesene rute
+
+            foreach (Ruta r in susjedni)
+            { 
+                //gradi put
+                List<string> podRuta = Stanice(r.Kraj);
+                //za svakupodRutu oznaci da smo bili u njoj
+                foreach (string ru in podRuta)
+                {
+                    result.Add(start.KvartIme + "-" + ru);
+                
+                
+                }
+                    
+
+            
+              }
+            result.Add("-" + start.KvartIme);
+            return result;
+
+          }
+
+        public List<string> PutCiklus(Kvart start, List<Ruta> Rute)
+        { 
+            
+            
+            // najmanja ruta
+                
+              var minRuta =
+                    (from ruta in Rute
+                     orderby Rute.Duljina
+                     select Rute.Duljina).First();  //ako ih ima vise, vrati prvu po redu  
+                         
+                         
+             // naci sve rute sa 3 stanice
+                var rute = Stanice(start);
+  
+            //izbaciti one koje ne zavrsavaju na nasem startu (ne cikluse)
+
+            var cycles =
+               (from ruta in rute  
+                where ruta[ ruta.Lenght - 1] == start.KvartIme //
+                where ruta.Length > 2 // mora biti bar jos jedna osim startne stanice
+                select ruta).Distinct().ToList();
+
+            return cycles;         
+      }
+       
+
+          
+
+
+
+
+
+
+
+        /*
         public MyModel3 PutCiklus(Kvart start, List<Ruta> Rute)
         {
             count = 0;
-            /*
+            
            for(int i = 0; i < 4; i++  )
            {
                 if (Rute[i].Start.KvartIme == start.KvartIme)
@@ -40,109 +119,15 @@ namespace Metro.Models
                      
                     }
                 }
-            }  */
+            }  
 
           return this;
         }
            
-
-
-
-
-        /*
-            
-            var minRuta =
-                (from ruta in Rute
-                 orderby ruta.Duljina
-                 select ruta.Duljina).First();
-
-            var rute = Stanice(start, maxPut / minRuta, false);
-
-            //izbaci ne-cikluse
-
-            var neCiklusi =
-               (from ruta in Rute
-                /// where ruta[ruta.Length - 1] == start.KvartIme //usporediti stringove
-                 where ruta.Duljina > 2 // mora imati vise od pocetne lokacije
-                 where DuljinaPuta(ruta) <= maxPut
-                 select ruta).Distinct().ToList(); 
-
-            return neCiklusi.Count;
-
-        }
-
-
-        public int? BrojTrazenihRuta(Tuple<string[], int?, string> ruta) // Item3 je vrsta rute kakvu trazim u zadatku {"obicna","MaxTri","MaxCetiri", "najkracaRuta"}
-        {
-            int? broj = 0;
-
-            try {
-
-                switch (ruta.Item3) //ovisno koja je vrsta rute koje trazim, adekvatnu funkciju pozovi
-                { 
-                    
-                    //slucajevi za duljinu obicne rute
-                    
-                    String.Compare("obicna",ruta.Item3): //compare two string funkcija treba
-
-                        broj = this.DuljinaPuta(ruta.Item1);
-                        break;
-
-                    //slucajevi najvise tri stanice,moze biti i manje
-                    case ruta.Item3 == "MaxTri" :
-                        
-                        var rute = this.Stanice(new Kvart(ruta.Item1.ElementAt(0)),3,false).Distinct<string>().ToList<string>();
-                        
-                        broj =
-                             (from s in rute
-                             where s.Length > 1
-                             where s[s.Length-1] == ruta.Item1[2] // compare two strings funkcija 
-                             select s).Count();
-                        break;
-                     
-                    //slucajevi najvise cetiri stanice
-                    case ruta.Item3 == "MaxCetiri":
-                        rute = this.Stanice(new Kvart(ruta.Item1.ElementAt(0)), 4, true).Distinct<string>().ToList<string>();
-                        broj =
-                            (from s in rute
-                             where s.Length > 1
-                             where s[] == rute.Item1[2]
-                             select s).Count();
-                        break;
-                        //nadji najkracu rutu
-
-                        case ruta.Item3 =="najkracaRuta":
-                        
-                        Dijkstra D = new Dijkstra(metro);
-
-                        var najkracaRuta = D.MinRuta(new Kvart(ruta.Item1[0]), ruta.Item1 == ruta.Item1); // ali negdje je crtica kao razlika dva kvarta 
-
-                                 broj = minRoutes[ruta.Item1[2]].Item1;
-
-                                
-                        
-                                 if (broj == Int32.MaxValue)
-                                 {
-                                     broj = null;
-                                 }
-                       
-                                 break;
-                                    
-                                 }
-            
-            
-            
-            
-            }
-        
-        
-        }
-
-
-        
-
-        
         */
+
+
+
 
 
 

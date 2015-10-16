@@ -4,19 +4,19 @@
 
 
 
- @using (Html.BeginForm("metro4Post", "METRO-4", FormMethod.Post, new { id = "metro4" }))
+ @using (Html.BeginForm("metro4Post", "METRO4", FormMethod.Post, new { id = "metro4" }))
  {   
      <p>Input stations:</p>
      
     <br />
 
-    @:First station @Html.TextBoxFor(x => x.Kvart.KvartIme,new { id = "First" })<br/>
-    @:Second station @Html.TextBoxFor(x => x.Kvart.KvartIme,new { id = "Second" })<br />
+    @:First station @Html.TextBoxFor(x => x.KvartIme,new { id = "First" })<br/>
+    @:Second station @Html.TextBoxFor(x => x.KvartIme,new { id = "Second" })<br />
  
    
   
     
-    <input type="submit" value="Get distance" />
+    <input type="submit" value="Get roudtrips" />
     
  }
 
@@ -46,7 +46,7 @@
             
 
                 $.ajax({
-                    url: '@Url.Action("metro4Post", "METRO-4")', // "/METRO-4/metro4Post",
+                    url: '@Url.Action("metro4Post", "METRO4")', // "/METRO-4/metro4Post",
                     data: JSON.stringify({ stations: request }),
                     type: "POST",
                     async: true,

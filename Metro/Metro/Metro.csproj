@@ -179,7 +179,6 @@
     <Compile Include="Models\METRO3.cs" />
     <Compile Include="Models\METRO4.cs" />
     <Compile Include="Models\METRO5.cs" />
-    <Compile Include="Models\Put.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\RutaViewModel.cs" />
   </ItemGroup>

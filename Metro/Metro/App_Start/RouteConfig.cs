@@ -24,7 +24,7 @@ namespace Metro
 
        routes.MapRoute(
      name: "zg",
-     url: "zagrebmetro/zagreb",
+     url: "zagreb-metro/trip/distance",
      defaults: new { controller = "zagrebmetro", action = "zagreb", id = UrlParameter.Optional }
      );
      
@@ -32,25 +32,25 @@ namespace Metro
          routes.MapRoute(
          name: "metro3",
          url: "zagreb-metro/trip/round/count",
-         defaults: new { controller = "METRO-3", action = "metro3", id = UrlParameter.Optional }
+         defaults: new { controller = "METRO3", action = "metro3", id = UrlParameter.Optional }
          );
 
          routes.MapRoute(
                   name: "metro4",
                   url: "zagreb-metro/trip/count",
-                  defaults: new { controller = "METRO-4", action = "metro4", id = UrlParameter.Optional }
+                  defaults: new { controller = "METRO4", action = "metro4", id = UrlParameter.Optional }
                   );
 
          routes.MapRoute(
       name: "metro5",
       url: "zagreb-metro/trip/shortest",
-      defaults: new { controller = "METRO-5", action = "metro5", id = UrlParameter.Optional }
+      defaults: new { controller = "METRO5", action = "metro5", id = UrlParameter.Optional }
       );
 
          routes.MapRoute(
      name: "metro7",
      url: "zagreb-metro/trip/bonus",
-     defaults: new { controller = "METRO-7", action = "metro7", id = UrlParameter.Optional }
+     defaults: new { controller = "METRO7", action = "metro7", id = UrlParameter.Optional }
      );
             routes.MapRoute(
             name: "Default",

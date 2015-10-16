@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.Entity;
+using Metro.Models;
 
 namespace Metro.Models
 {
 
 
-    public class Kvart
+
+
+  public class Kvart
     {
         //konstruktor
 
@@ -22,6 +25,7 @@ namespace Metro.Models
 
 
     }
+
 
 
     public class Ruta
@@ -38,13 +42,128 @@ namespace Metro.Models
         }
 
         public Kvart Start { get; set; }
-
         public Kvart Kraj { get; set; }
-
         public int Duljina { get; set; }
+
+         public static readonly ReadOnlyCollection<Ruta> SveRute;
+         static readonly List<Ruta> sveRute;
+      
+        static ()
+       {
+        sveRute = new List<Ruta>();
+        SveRute = new ReadOnlyCollection<Ruta>(sveRute);
+       }
+
+
+    public int Index { get; private set; }
+    public Kvart A { get; private set; }
+    public Kvart B { get { return Kvart.sviKvartovi[this.bIndex]; } }
+    private readonly int bIndex;
+
+    internal Ruta(Kvart a, int bIndex)
+    {
+        this.Index = sveRute.Count;
+        this.A = a;
+        this.bIndex = bIndex;
+        sveRute.Add(this);
+    }
+    public override string ToString()
+    {
+        return this.Index.ToString();
+    }
 
 
     }
+
+       public sealed class Ciklus
+    {
+        
+        public readonly ReadOnlyCollection<Ruta> Rute;
+        private List<Ruta> rute;
+        private bool IsComplete;
+
+     internal void Build(Ruta ruta)
+       {
+        if (!IsComplete)
+        {
+            if (ruta == rute[0]) 
+                IsComplete = true;
+            else
+                this.rute.Add(ruta);
+        }
+      }
+
+     internal Ciklus(Ruta prvaRuta)
+    {
+        this.rute = new List<Ruta>();
+        this.rute.Add(prvaRuta);
+        this.Rute = new ReadOnlyCollection<Ruta>(this.rute);
+    }
+
+      public override string ToString()
+    {
+        StringBuilder result = new StringBuilder();
+        foreach (var ruta in this.rute)
+        {
+            result.Append(ruta.Index.ToString());
+            if (ruta !=rute[rute.Count - 1])
+                result.Append(", ");
+        }
+        return result.ToString();
+    }
+
+
+        public string  { get; set; }
+
+
+    }
+
+
+
+
+public sealed class Kvart
+{
+    public static readonly ReadOnlyCollection<Kvart> SviKvartovi;
+    internal static readonly List<Kvart> sviKvartovi;
+    static Node()
+    {
+        sviKvartovi = new List<Kvart>();
+        SviKvartovi = new ReadOnlyCollection<Node>(sviKvartovi);
+    }
+    public static void SetReferences()
+    {//call this method after all nodes have been created
+        foreach (Ruta e in Rute.SveRute)
+            e.A.ruta.Add(e);
+    }
+
+    //All edges linking *from* this node, not to it. 
+    //The variablename "Edges" it quite unsatisfactory, but I couldn't come up with anything better.
+    public ReadOnlyCollection<Rute> Rute { get; private set; }
+    internal List<Rute> edge;
+    public int Index { get; private set; }
+    public Kvart(params int[] nodesIndicesConnectedTo)
+    {
+        this.ruta = new List<Rute>(nodesIndicesConnectedTo.Length);
+        this.Rute = new ReadOnlyCollection<Edge>(edge);
+        this.Index = allNodes.Count;
+        allNodes.Add(this);
+        foreach (int nodeIndex in nodesIndicesConnectedTo)
+            new Ruta(this, nodeIndex);
+    }
+    public override string ToString()
+    {
+        return this.Index.ToString();
+    }
+}
+
+
+
+
+
+
+
+
+
 
 
 
