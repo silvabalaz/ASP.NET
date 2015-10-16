@@ -22,7 +22,7 @@ namespace Metro.Tests.Controllers
         {
 
             // Arrange
-            METRO_7Controller controller = new METRO_7Controller();
+            METRO7Controller controller = new METRO7Controller();
             //Act
             ViewResult result = controller.metro7() as ViewResult;
             //Assert 
@@ -40,7 +40,7 @@ namespace Metro.Tests.Controllers
            //MyModel1  request = new MyModel1() { stations = new string[] { "MAKSIMIR", "DUBRAVA" } };
            //MyModel2 expected = new MyModel2() { distance = 7 };
 
-            METRO_7Controller controller = new METRO_7Controller();
+            METRO7Controller controller = new METRO7Controller();
             //Act
             //JsonResult result = controller.zagrebPost(request) as JsonResult;
             //string Json = new JavaScriptSerializer().Serialize(result.Data);
@@ -55,4 +55,6 @@ namespace Metro.Tests.Controllers
 
 
     }
+}
+
 }

@@ -3,25 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Newtonsoft.Json;
 using Metro.Models;
+
+
+
 
 namespace Metro.Controllers
 {
-    public class METRO_4Controller : Controller
+    public class METRO3Controller : Controller
     {
-        //
-        // GET: /METRO-4/
+        
+         //GET
 
-        public ActionResult metro4()
+        public ActionResult metro3()
         {
             return View();
+
         }
-
-        //
-        // GET: /METRO-4/Details/5
-
-        public JsonResult metro4Post(MyModel4 request)
+        
+        [HttpGet]
+        public JsonResult metro3Get(Kvart request)
         {
+
             string ulaznaDatoteka = (string)TempData["Metro"];
             // Mapa metro = new Mapa("ZagrebMetro", ulaznaDatoteka);
 
@@ -45,21 +49,22 @@ namespace Metro.Controllers
             foreach (Ruta ru in Lista)
             { r.Add(ru); }
 
-             MyModel5 model = new MyModel5() { count = 0, stops = new string[] { "" } };
-             MyModel5 model2 = new MyModel5() { count = 0 };
-          
-            //Kvart start = new Kvart(request.stations.start);
 
-           // model2.PutBezCiklusa( start, Lista);
+
+            MyModel3 model = new MyModel3() { roudtrips = new string[] { "" }, count=0 };
+
+            model.PutCiklus(request,Lista);
+     
+
+
 
             //return View("zagrebPost");
 
-            return Json(model2, JsonRequestBehavior.AllowGet);
-
-
+            return Json(model, JsonRequestBehavior.AllowGet);
+          
+     
 
 
         }
-
     }
 }

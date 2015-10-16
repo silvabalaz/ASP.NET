@@ -28,7 +28,7 @@ namespace Metro.Tests.Models
                 new Ruta(new Kvart("MAKSIMIR"),new Kvart("DUBRAVA"),7) 
             };
 
-            string request = "SPANSKO";
+            Kvart request = new Kvart("SPANSKO");
             MyModel3 expected = new MyModel3() { count= 2, roudtrips = new string[] { "SPANSKO-MEDVESCAK-SPANSKO","SPANSKO-DUBRAVA-SIGET-SPANSKO" } };
           
 

@@ -11,8 +11,7 @@ using System.Web.Script.Serialization;
 
 namespace Metro.Tests.Controllers
 {
-    class METRO_4ControllerTest
-    {
+   
 
          [TestClass]
     public class metro4ControllerTest
@@ -23,7 +22,7 @@ namespace Metro.Tests.Controllers
         {
 
             // Arrange
-            METRO_4Controller controller = new METRO_4Controller();
+            METRO4Controller controller = new METRO4Controller();
             //Act
             ViewResult result = controller.metro4() as ViewResult;
             //Assert 
@@ -41,7 +40,7 @@ namespace Metro.Tests.Controllers
             MyModel4  request = new MyModel4() { stations = new List<Kvart>{ new Kvart("MAKSIMIR"), new Kvart("SPANSKO") }, stops = 4 };
             MyModel5 expected = new MyModel5() { count= 3 , stops = new string[] {"SIGET-SPANSKO-MEDVESCAK","MEDVESCAK-SPANSKO-MEDVESCAK","MEDVESCAK-DUBRAVA-SIGET"} };
 
-            METRO_4Controller controller = new METRO_4Controller();
+            METRO4Controller controller = new METRO4Controller();
             //Act
             JsonResult result = controller.metro4Post(request) as JsonResult;
             string Json = new JavaScriptSerializer().Serialize(result.Data);

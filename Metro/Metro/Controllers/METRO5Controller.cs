@@ -7,18 +7,18 @@ using Metro.Models;
 
 namespace Metro.Controllers
 {
-    public class METRO_7Controller : Controller
+    public class METRO5Controller : Controller
     {
-        
+       
 
-        public ActionResult metro7()
+        public ActionResult metro5()
         {
             return View();
         }
 
-  
+       
 
-         public JsonResult metro7Post()
+        public JsonResult metro5Post(MyModel6 request)
         {
 
             string ulaznaDatoteka = (string)TempData["Metro"];
@@ -44,16 +44,18 @@ namespace Metro.Controllers
             foreach (Ruta ru in Lista)
             { r.Add(ru); }
 
-           
+     
             MyModel2 model2 = new MyModel2() { distance = 0 };
-            //model2.NajkracaRuta(Lista, model)
+            //model2.NajkracaRuta(Lista, request)
        
 
             //return View("zagrebPost");
 
             return Json(model2, JsonRequestBehavior.AllowGet);
 
+        }
 
+        
      
     }
 }
