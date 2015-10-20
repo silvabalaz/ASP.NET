@@ -1,5 +1,5 @@
 ﻿
-@model  Metro.Models.MyModel1
+@model  Metro.Models.MyModel2
 @using Metro.Models
 
 
@@ -12,13 +12,14 @@
 <div id="result">
 
       <dt>Duljina prva:/zagrebPost
-    @Html.DisplayNameFor(model => model.stations[0]) 
+    @Html.DisplayNameFor(model => model.distance) 
     </dt>
     <dd>ispis:
 
-     @Html.DisplayFor(model => model.stations[0])
-     @Html.DisplayFor(model => model.stations[1])
-     @Html.DisplayFor(model => model.stations[2])
+  
+     @Html.DisplayFor(model => model.distance)
+ 
+  
     </dd>
 
 

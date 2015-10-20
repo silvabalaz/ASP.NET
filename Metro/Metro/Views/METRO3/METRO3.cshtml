@@ -39,16 +39,16 @@
             
 
                 $.ajax({
-                    url:'@Url.Action("metro3Get", "METRO3")', 
+                    url: '@Url.Action("metro3Get", "METRO3")', 
                     data: {S : request},
                     type: "GET",
                     async: true,
                     contentType: 'application/json; charset=utf-8',
                     traditional: true,
-                    success: function () {
+                    success: function (data) {
                         console.log("OK");
 
-                        $("#result").html();
+                        $("#result").html(data);
                     },
                     error: function (e) { alert(e.statusText); }
                 });

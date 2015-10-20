@@ -60,7 +60,7 @@ namespace Metro.Models
             
             }
         
-           //podruta.Add("-" + start.KvartIme); 
+          
          
    
             return podruta;

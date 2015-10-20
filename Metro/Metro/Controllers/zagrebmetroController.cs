@@ -23,7 +23,7 @@ namespace Metro.Controllers
         }
 
         [HttpPost]
-        public JsonResult zagrebPost(MyModel1 request)
+        public ActionResult zagrebPost(MyModel1 request)
         {
             
 
@@ -63,9 +63,9 @@ namespace Metro.Controllers
 
 
         
-                //return View("zagrebPost");
+                return View("zagrebPost");
 
-                return Json(model2 ,JsonRequestBehavior.AllowGet);
+                //return Json(model2 ,JsonRequestBehavior.AllowGet);
           
 
         }

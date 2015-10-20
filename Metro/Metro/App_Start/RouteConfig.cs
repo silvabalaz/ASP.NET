@@ -18,13 +18,13 @@ namespace Metro
 
        routes.MapRoute(
    name: "zg1",
-   url: "zagreb-metro/trip/distance",// "zagrebmetro/zagrebPost",
+   url: "zagrebmetro/zagrebPost",
    defaults: new { controller = "zagrebmetro", action = "zagrebPost", id = UrlParameter.Optional }
    );
 
        routes.MapRoute(
      name: "zg",
-     url: "zagreb-metro/trip",
+     url: "zagrebmetro/",
      defaults: new { controller = "zagrebmetro", action = "zagreb", id = UrlParameter.Optional }
      );
 

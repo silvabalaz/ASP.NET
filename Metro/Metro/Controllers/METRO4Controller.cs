@@ -45,16 +45,21 @@ namespace Metro.Controllers
             foreach (Ruta ru in Lista)
             { r.Add(ru); }
 
-             MyModel5 model = new MyModel5() { count = 0, stops = new string[] { "" } };
-             MyModel5 model2 = new MyModel5() { count = 0 };
-          
-            //Kvart start = new Kvart(request.stations.start);
+            MyModel5 model = new MyModel5() { stops = new string[] { request.stations.start, request.stations.end }, count = 0 };
+            
 
-           // model2.PutBezCiklusa( start, Lista);
+
+
+
+             Kvart start = new Kvart(request.stations.start);
+             Kvart kraj = new Kvart(request.stations.end);
+
+             List<string> rez = model.PutBezCiklusa(start, kraj,Lista);
+        
 
             //return View("zagrebPost");
 
-            return Json(model2, JsonRequestBehavior.AllowGet);
+            return Json(rez, JsonRequestBehavior.AllowGet);
 
 
 

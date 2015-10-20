@@ -36,18 +36,24 @@
                 e.preventDefault();
              
 
-                var request = [];
-                if($('#First').val() != "")
-                    request.push($('#First').val());
-                if ($('#Second').val() != "")
-                    request.push($('#Second').val());
               
+                if($('#First').val() != "")
+                    var Start = $('#First').val();
+                if ($('#Second').val() != "")
+                    var End = $('#Second').val();
+              
+                var send ={
 
-            
+                    stations : {
+                        start: Start,
+                        end : End,
+                        },
+                    count: 4
+                };
 
                 $.ajax({
                     url: '@Url.Action("metro4Post", "METRO4")', // "/METRO-4/metro4Post",
-                    data: JSON.stringify({ stations: request }),
+                    data: JSON.stringify(send),
                     type: "POST",
                     async: true,
                     contentType: 'application/json; charset=utf-8',

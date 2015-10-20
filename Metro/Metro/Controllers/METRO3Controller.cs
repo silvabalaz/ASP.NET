@@ -57,8 +57,8 @@ namespace Metro.Controllers
             model.count = rez.Count();
             model.roudtrips = rez.ToArray<string>();
             
-            return Json(model, JsonRequestBehavior.AllowGet);
-          
+           // return Json(model, JsonRequestBehavior.AllowGet);
+           return View("METRO3Get");
 
 
         }
