@@ -34,26 +34,23 @@
             $("#metro3").on("submit", function (e) {
 
                 e.preventDefault();
-             
-
-                var request = [];
-                if($('#First').val() != "")
-                    request.push($('#First').val());
-             
-
+                var request = $('#First').val();
+               
             
 
                 $.ajax({
-                    url: '@Url.Action("METRO3", "metro3Get")', 
-                    data: JSON.stringify({ stations: request }),
+                    url:'@Url.Action("metro3Get", "METRO3")', 
+                    data: {S : request},
                     type: "GET",
                     async: true,
                     contentType: 'application/json; charset=utf-8',
                     traditional: true,
-                    success: function (data) {
+                    success: function () {
                         console.log("OK");
-                        $("#result").html(data);
-                    }
+
+                        $("#result").html();
+                    },
+                    error: function (e) { alert(e.statusText); }
                 });
 
 

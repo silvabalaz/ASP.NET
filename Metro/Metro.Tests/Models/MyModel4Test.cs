@@ -7,6 +7,7 @@ using Metro.Models;
 
 namespace Metro.Tests.Models
 {
+    [TestClass]
     class MyModel4Test
     {
         [TestMethod]

@@ -180,7 +180,6 @@
     <Compile Include="Models\METRO4.cs" />
     <Compile Include="Models\METRO5.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModel\RutaViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\metro.txt" />

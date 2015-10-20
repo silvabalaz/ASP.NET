@@ -4,132 +4,96 @@ using System.Linq;
 using System.Web;
 using System.Text;
 using Metro.Models;
+using System.Collections;
 
 namespace Metro.Models
 {
     public class MyModel3
-    {
+   {
+        
+
         public int count { get; set; }
         public string[] roudtrips { get; set; }
+        
+     
 
 
-
-        public Ruta[] SusjedniKvartovi(Kvart start, List<Ruta> Rute)
+        public Kvart[] SusjedniKvartovi(Kvart start, List<Ruta> Rute)
         { 
             return
                 (from ruta in Rute
                  where ruta.Start.KvartIme == start.KvartIme
-                 select ruta).ToArray<Ruta>();
+                 select ruta.Kraj).ToArray<Kvart>();
                 
-        } // polje [ruta("Spansko""Medvescak"),ruta("Spansko""Dubrava")]
+        } 
 
 
 
 
-        public List<string> Stanice(Kvart start)
+        public List<string> Stanice(Kvart start, int brStanica, List<Ruta> Rute) 
         {
-            List<string> result = new List<string>();
-            result.Add(start.KvartIme);
-        
+           
+            string[] result = new string[] { };
+            List<string> podruta = new List<string>();
+    
 
-            //susjedni Kvartovi
-
-            Ruta[] susjedni = SusjedniKvartovi(start,Rute); //unesene rute
-
-            foreach (Ruta r in susjedni)
+            Kvart[] susjedni = SusjedniKvartovi(start, Rute); 
+            
+            foreach (Kvart r in susjedni) 
             { 
-                //gradi put
-                List<string> podRuta = Stanice(r.Kraj);
-                //za svakupodRutu oznaci da smo bili u njoj
-                foreach (string ru in podRuta)
+                
+                if (brStanica - 1 > 0)
                 {
-                    result.Add(start.KvartIme + "-" + ru);
-                
-                
-                }
+                    List<string> podRuta = Stanice(r, brStanica - 1, Rute);
+                  
+
+                    foreach (string ru in podRuta)
+                    {
+
+                        podruta.Add(start.KvartIme + "-" + ru); 
                     
 
+                    }
+
+                }
+                else podruta.Add(start.KvartIme);
             
-              }
-            result.Add("-" + start.KvartIme);
-            return result;
+            }
+        
+           //podruta.Add("-" + start.KvartIme); 
+         
+   
+            return podruta;
 
           }
 
-        public List<string> PutCiklus(Kvart start, List<Ruta> Rute)
-        { 
-            
-            
-            // najmanja ruta
-                
-              var minRuta =
-                    (from ruta in Rute
-                     orderby Rute.Duljina
-                     select Rute.Duljina).First();  //ako ih ima vise, vrati prvu po redu  
-                         
-                         
-             // naci sve rute sa 3 stanice
-                var rute = Stanice(start);
-  
-            //izbaciti one koje ne zavrsavaju na nasem startu (ne cikluse)
+        public List<string> PutCiklus(Kvart start, List<Ruta> Rute, int BrStanica) 
+        {
 
-            var cycles =
-               (from ruta in rute  
-                where ruta[ ruta.Lenght - 1] == start.KvartIme //
-                where ruta.Length > 2 // mora biti bar jos jedna osim startne stanice
-                select ruta).Distinct().ToList();
+            BrStanica++;
+    
+            
+                var rute = Stanice(start, BrStanica,Rute);
+                List<string> cycles = new List<string>();
+           
+           
+            foreach(string ruta in rute)
+            {
+                var result = ruta.Substring(ruta.LastIndexOf('-') + 1);
+                int count = ruta.Split('-').Length -1 ;
+            
+                if((result == start.KvartIme)&&(count > 2))
+                {
+                   
+                    cycles.Add(ruta); 
+                }
+            
+            }
 
-            return cycles;         
+   
+           return cycles;      
       }
        
-
-          
-
-
-
-
-
-
-
-        /*
-        public MyModel3 PutCiklus(Kvart start, List<Ruta> Rute)
-        {
-            count = 0;
-            
-           for(int i = 0; i < 4; i++  )
-           {
-                if (Rute[i].Start.KvartIme == start.KvartIme)
-                {
-                    string temp = roudtrips.Append("-");
-                    temp.Append(start.KvartIme);
-
-                    while (Rute[i].Kraj.KvartIme == Rute[i + 1].Start.KvartIme)
-                    {
-                        roudtrips.Append(Rute[i].Kraj.KvartIme);
-
-                        if (Rute[i + 1].Kraj.KvartIme == start.KvartIme)
-                        {
-                            count++;
-                            roudtrips.Append(start.KvartIme);
-                            break;
-
-                        }
-
-
-                     
-                    }
-                }
-            }  
-
-          return this;
-        }
-           
-        */
-
-
-
-
-
 
 
     }

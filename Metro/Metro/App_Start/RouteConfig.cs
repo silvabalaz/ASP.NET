@@ -18,22 +18,29 @@ namespace Metro
 
        routes.MapRoute(
    name: "zg1",
-   url: "zagrebmetro/zagrebPost",
+   url: "zagreb-metro/trip/distance",// "zagrebmetro/zagrebPost",
    defaults: new { controller = "zagrebmetro", action = "zagrebPost", id = UrlParameter.Optional }
    );
 
        routes.MapRoute(
      name: "zg",
-     url: "zagreb-metro/trip/distance",
+     url: "zagreb-metro/trip",
      defaults: new { controller = "zagrebmetro", action = "zagreb", id = UrlParameter.Optional }
      );
-     
+
+
+       routes.MapRoute(
+       name: "metro3Get",
+       url: "zagreb-metro/trip/round/count/" , //"METRO3/metro3Get",
+       defaults: new { controller = "METRO3", action = "metro3Get", id = 'S' } 
+       );
 
          routes.MapRoute(
          name: "metro3",
-         url: "zagreb-metro/trip/round/count",
+         url: "zagreb-metro/trip/round/",//"METRO3/metro3",
          defaults: new { controller = "METRO3", action = "metro3", id = UrlParameter.Optional }
          );
+
 
          routes.MapRoute(
                   name: "metro4",

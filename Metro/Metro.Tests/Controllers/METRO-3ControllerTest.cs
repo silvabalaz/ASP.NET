@@ -31,15 +31,16 @@ namespace Metro.Tests.Controllers
 
 
         [TestMethod]
-        public void metro3GetTest()
+        public void metro3GetTest( string S)
         {
 
          
             //Arange
-           Kvart request = new Kvart("SPANSKO");
+            string request = "SPANSKO";
             MyModel3 expected = new MyModel3() { count = 2,  roudtrips = new string[] { "SPANSKO-MEDVESCAK-SPANSKO", "SPANSKO-DUBRAVA-SIGET-SPANSKO" } };
 
             METRO3Controller controller = new METRO3Controller();
+
             //Act
             JsonResult result = controller.metro3Get(request) as JsonResult;
             string Json = new JavaScriptSerializer().Serialize(result.Data);

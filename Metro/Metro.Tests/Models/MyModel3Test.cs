@@ -7,6 +7,8 @@ using Metro.Models;
 
 namespace Metro.Tests.Models
 {
+
+    [TestClass]
     class MyModel3Test
     {
         [TestMethod]
@@ -28,16 +30,23 @@ namespace Metro.Tests.Models
                 new Ruta(new Kvart("MAKSIMIR"),new Kvart("DUBRAVA"),7) 
             };
 
+          
+
+
+
             Kvart request = new Kvart("SPANSKO");
-            MyModel3 expected = new MyModel3() { count= 2, roudtrips = new string[] { "SPANSKO-MEDVESCAK-SPANSKO","SPANSKO-DUBRAVA-SIGET-SPANSKO" } };
+            List<string> expected = new List<string>() { "SPANSKO-MEDVESCAK-SPANSKO","SPANSKO-DUBRAVA-SIGET-SPANSKO"  };
           
 
             //act
-            //MyModel3 result = request.PutCiklus(Lista);
+            MyModel3 result1 = new MyModel3 { roudtrips = new string[] { "" }, count = 0, };
+            List<string> res = result1.PutCiklus(request, Lista, 3);
         
+           
+           
 
             //assert
-           // Assert.AreEqual(expected, result); 
+            Assert.AreEqual<List<string>>(expected, res); 
           
         }
 

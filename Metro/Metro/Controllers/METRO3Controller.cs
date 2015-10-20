@@ -23,7 +23,7 @@ namespace Metro.Controllers
         }
         
         [HttpGet]
-        public JsonResult metro3Get(Kvart request)
+        public ActionResult metro3Get(string S)
         {
 
             string ulaznaDatoteka = (string)TempData["Metro"];
@@ -49,20 +49,16 @@ namespace Metro.Controllers
             foreach (Ruta ru in Lista)
             { r.Add(ru); }
 
+            MyModel3 model = new MyModel3() { roudtrips = new string[] {""}, count = 0 };
+            string QueryString = Request.QueryString["S"];
 
-
-            MyModel3 model = new MyModel3() { roudtrips = new string[] { "" }, count=0 };
-
-            model.PutCiklus(request,Lista);
-     
-
-
-
-            //return View("zagrebPost");
-
+            Kvart unos = new Kvart(QueryString);
+            List<string> rez = model.PutCiklus(unos,r,3);
+            model.count = rez.Count();
+            model.roudtrips = rez.ToArray<string>();
+            
             return Json(model, JsonRequestBehavior.AllowGet);
           
-     
 
 
         }
