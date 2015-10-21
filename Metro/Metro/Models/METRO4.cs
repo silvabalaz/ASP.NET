@@ -54,7 +54,8 @@ namespace Metro.Models
             foreach (Kvart r in susjedni)
             {
 
-                if (brStanica - 1 > 0)
+
+                if (brStanica - 1 > 1)
                 {
                     List<string> podRuta = Stanice(r, kraj, brStanica - 1, Rute);
 
@@ -62,18 +63,52 @@ namespace Metro.Models
                     foreach (string ru in podRuta)
                     {
 
-                        podruta.Add(start.KvartIme + "-" + ru);
+                        podruta.Add(r.KvartIme + "-" + ru);
+                   
+
+                    }
+
+                }
+
+
+
+
+                if (brStanica - 1 == 1 )
+                {
+                    List<string> podRuta = Stanice(r, kraj, brStanica - 1, Rute);
+
+
+                    foreach (string ru in podRuta)
+                    {
+
+                        podruta.Add(r.KvartIme);
 
 
                     }
 
                 }
-                else podruta.Add(start.KvartIme);
+
+                if (brStanica - 1 == 0)
+                {
+                    List<string> podRuta = Stanice(r, kraj, brStanica - 1, Rute);
+
+                   
+                }
+
+
+                else if (r.KvartIme != kraj.KvartIme)
+                {
+                    Kvart[] susjedniZadnjeg = SusjedniKvartovi(r, Rute);
+                    foreach (Kvart z in susjedniZadnjeg)
+                    {
+                        if (z.KvartIme == kraj.KvartIme)
+                            
+                            podruta.Add("-"+r.KvartIme);
+                    }
+                }
+
 
             }
-
-
-
 
             return podruta;
 
@@ -86,7 +121,7 @@ namespace Metro.Models
             int brStanica = 4;
 
             var rute = Stanice(start, kraj, brStanica , Rute);
-            List<string> cycles = new List<string>();
+            List<string> Noncycles = new List<string>();
 
 
             foreach (string ruta in rute)
@@ -94,16 +129,17 @@ namespace Metro.Models
                 var result = ruta.Substring(ruta.LastIndexOf('-') + 1);
                 int count = ruta.Split('-').Length - 1;
 
-                if ((result == start.KvartIme) && (count > 2))
+                if ( count == 3)
                 {
-
-                    cycles.Add(ruta);
+                    int i = ruta.LastIndexOf('-');
+                    string ss = ruta.Substring(0,i) + result;
+                    Noncycles.Add(ss);
                 }
 
             }
 
-
-            return cycles;
+        
+            return Noncycles;
         }
 
 
